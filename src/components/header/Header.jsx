@@ -2,7 +2,6 @@ import ChangeLanguage from "../chengeLanguage/changeLanguage"
 import logo from '../../assets/dz_tabib.svg'
 import profile from '../../assets/profile_icon.png'
 import { useState } from "react";
-import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 import dztabib from "../../assets/dz_tabib.svg"
 import Cookies from 'js-cookie';
@@ -155,7 +154,3 @@ export const Header = ({ t }) => {
 
   )
 }
-
-Header.propTypes = {
-  t: PropTypes.func.isRequired,
-};
