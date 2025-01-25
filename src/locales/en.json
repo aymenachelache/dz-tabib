@@ -1,0 +1,85 @@
+{
+  "Welcome to React": "Welcome to React and react-i18next",
+  "Footer": {
+    "About": {
+      "About": "About",
+      "AboutUs": "About Us",
+      "OurTeam": "Our Team",
+      "Careers": "Careers",
+      "Press": "Press"
+    },
+    "Search": {
+      "SearchBy": "Search by",
+      "Speciality": "Specialty",
+      "Area": "Area",
+      "Insurance": "Insurance",
+      "Hospital": "Hospital",
+      "Center": "Center"
+    },
+    "Doctor": {
+      "AreYouADoctor": "Are you a doctor?",
+      "JoinVezeetaDoctors": "Join Dz-tabib Doctors"
+    },
+    "Help": {
+      "NeedHelp": "Need help?",
+      "MedicalLibrary": "Medical Library",
+      "ContactUs": "Contact Us",
+      "TermsOfUse": "Terms of Use",
+      "PrivacyPolicy": "Privacy Policy",
+      "DoctorsPrivacyPolicy": "Doctors' Privacy Policy"
+    },
+    "Security": "Security",
+    "AllRightsReserved": "All rights reserved"
+  },
+  "Header": {
+    "Login": "Login",
+    "SignUp": "Sign Up",
+    "HomePage": "Home Page"
+  },
+  "HomePage": {
+    "hero": {
+      "title": "Better health for a better life",
+      "reservation": "Book an appointment online"
+    },
+    "home": {
+      "AllDoctors": "All Doctors",
+      "SeeMore": "See More",
+      "ViewProfile": "View Profile",
+      "BookAppointment": "Book Appointment",
+      "AllSpecialties": "All Specialties"
+    }
+  },
+  "Specialities": {
+    "Anesthesiology": "Anesthesiology",
+    "Cardiology": "Cardiology",
+    "Dermatology": "Dermatology",
+    "Endocrinology": "Endocrinology",
+    "Family Medicine": "Family Medicine",
+    "Gastroenterology": "Gastroenterology",
+    "Geriatrics": "Geriatrics",
+    "Hematology": "Hematology",
+    "Infectious Disease": "Infectious Disease",
+    "Internal Medicine": "Internal Medicine",
+    "Neurology": "Neurology",
+    "Obstetrics and Gynecology": "Obstetrics and Gynecology",
+    "Oncology": "Oncology",
+    "Ophthalmology": "Ophthalmology",
+    "Orthopedic Surgery": "Orthopedic Surgery",
+    "Pediatrics": "Pediatrics",
+    "Psychiatry": "Psychiatry",
+    "Pulmonology": "Pulmonology",
+    "Rheumatology": "Rheumatology",
+    "Surgery": "Surgery",
+    "Urology": "Urology"
+  },
+  "Authentification": {
+    "Title": "Sign in to your account",
+    "EmailAddress": "Email Address",
+    "Password": "Password",
+    "Forget": "Forgot password?",
+    "NotAMember": "Not a member yet?",
+    "CreateAccount": "Create your free account",
+    "ResetPassword": "Reset Password",
+    "AlreadyHaveAccount": "Already have an account?"
+  }
+}

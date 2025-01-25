@@ -1,0 +1,211 @@
+{
+  "Welcome to React": "Welcome to React and react-i18next",
+  "Footer": {
+    "About": {
+      "About": "À propos",
+      "AboutUs": "À propos de nous",
+      "OurTeam": "Notre équipe",
+      "Careers": "Carrières",
+      "Press": "Presse"
+    },
+    "Search": {
+      "SearchBy": "Rechercher par",
+      "Speciality": "Spécialité",
+      "Area": "Zone",
+      "Insurance": "Assurance",
+      "Hospital": "Hôpital",
+      "Center": "Centre"
+    },
+    "Doctor": {
+      "AreYouADoctor": "Êtes-vous médecin ?",
+      "JoinVezeetaDoctors": "Rejoignez les médecins de Dz-tabib"
+    },
+    "Help": {
+      "NeedHelp": "Besoin d'aide ?",
+      "MedicalLibrary": "Bibliothèque médicale",
+      "ContactUs": "Contactez-nous",
+      "TermsOfUse": "Conditions d'utilisation",
+      "PrivacyPolicy": "Politique de confidentialité",
+      "DoctorsPrivacyPolicy": "Politique de confidentialité des médecins"
+    },
+    "Security": "Sécurité",
+    "AllRightsReserved": "Tous droits réservés"
+  },
+  "Header": {
+    "Login": "Se connecter",
+    "SignUp": "S'inscrire",
+    "HomePage": "Accueil"
+  },
+  "HomePage": {
+    "hero": {
+      "title": "Une santé de meilleure qualité pour une vie meilleure",
+      "reservation": "Réservez un rendez-vous en ligne"
+    },
+    "home": {
+      "AllDoctors": "Tous les médecins",
+      "SeeMore": "Voir plus",
+      "ViewProfile": "Voir le profil",
+      "BookAppointment": "Prendre rendez-vous",
+      "AllSpecialties": "Toutes les spécialités",
+      "aboutPlatform": {
+        "title": "À Propos de Dz-Tabib®",
+        "description": "Dz-Tabib® est un centre pour votre parcours de santé. Nous rapprochons les médecins qualifiés de tous les citoyens, qu’ils résident en ville ou à la campagne, et dans les déserts médicaux. Notre plateforme met à votre disposition toutes les ressources, non seulement pour la prise de rendez-vous, mais aussi pour organiser des soins médicaux complets."
+      }
+    },
+    "Teleconsultation": {
+      "Title": "Téléconsultation",
+      "Description1": "Consultez votre médecin",
+      "Description11": "depuis chez vous.",
+      "Description2": "Consultez votre médecin à distance.",
+      "Description3": "Partagez vos documents avec votre praticien.",
+      "Description4": "Bénéficiez d’une consultation rapide, augmentant votre confort.",
+      "Description5": "Profitez-en pour renouveler vos ordonnances, ou pour une lecture de bilan d’analyse."
+    },
+    "FollowUs": {
+      "Title": "Suivez-nous",
+      "Description1": "Suivez-nous sur nos réseaux sociaux",
+      "Description2": "Retrouvez-nous afin de suivre nos conseils, nos astuces et nos nouveautés ! Des invités de marque seront également présents parmi nous à travers des lives et notre série web : ",
+      "Description3": "صحتي مع بصحة"
+    }
+  },
+  "Specialities": {
+    "Anesthesiology": "Anesthésiology",
+    "Cardiology": "Cardiologie",
+    "Dermatology": "Dermatologie",
+    "Endocrinology": "Endocrinologie",
+    "Family Medicine": "Médecine familiale",
+    "Gastroenterology": "Gastro-entérologie",
+    "Geriatrics": "Gériatrie",
+    "Hematology": "Hématologie",
+    "Infectious Disease": "Maladies infectieuses",
+    "Internal Medicine": "Médecine interne",
+    "Neurology": "Neurologie",
+    "Obstetrics and Gynecology": "Obstétrique et gynécologie",
+    "Oncology": "Oncologie",
+    "Ophthalmology": "Ophtalmologie",
+    "Orthopedic Surgery": "Chirurgie orthopédique",
+    "Pediatrics": "Pédiatrie",
+    "Psychiatry": "Psychiatrie",
+    "Pulmonology": "Pneumologie",
+    "Rheumatology": "Rhumatologie",
+    "Surgery": "Chirurgie",
+    "Urology": "Urologie"
+  },
+  "Authentification": {
+    "Title": "Connectez-vous à votre compte",
+    "userName": "UserName",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "EmailAddress": "Adresse Email",
+    "Password": "Mot de passe",
+    "Forget": "Mot de passe oublié ?",
+    "NotAMember": "Pas encore membre ?",
+    "CreateAccount": "Créez votre compte gratuit",
+    "ResetPassword": "Réinitialiser le mot de passe",
+    "AlreadyHaveAccount": "Vous avez déjà un compte ?",
+    "ResetPasswordTitle": "Réinitialisez votre mot de passe",
+    "NewPassword": "Nouveau mot de passe",
+    "ConfirmPassword": "Confirmez le mot de passe"
+  },
+  "doctorCard": {
+    "doctor": "Docteur",
+    "specializedIn": "Spécialisé en :",
+    "location": "📍 Lieu :",
+    "fees": "💰 Frais :",
+    "waitingTime": "⏱️ Temps d'attente :",
+    "phone": "📞 Téléphone :",
+    "availability": {
+      "today": "Aujourd'hui",
+      "tomorrow": "Demain",
+      "other": "Jeu 21/11"
+    }
+  },
+  "booking": {
+    "title": "Informations de Réservation",
+    "chooseDate": "Choisissez une date",
+    "chooseTime": "Choisissez une heure",
+    "appointmentDetails": "Détails du Rendez-vous",
+    "confirmBooking": "Confirmer la Réservation",
+    "bookingSuccess": "Réservation réussie",
+    "bookingFailed": "Échec de la Réservation",
+    "doctorName": "Nom du Médecin",
+    "specialty": "Spécialité",
+    "location": "Emplacement",
+    "availability": "Disponibilité",
+    "patientDetails": "Détails du Patient",
+    "fullName": "Nom Complet",
+    "phoneNumber": "Numéro de Téléphone",
+    "email": "Adresse Email",
+    "notes": "Notes (facultatif)",
+    "submit": "Soumettre",
+    "cancel": "Annuler",
+    "back": "Retour",
+    "teleconsultation": "Téléconsultation",
+    "book": "Réserver"
+  },
+  "aboutDoctor": {
+    "title": "À Propos du Médecin",
+    "bio": "Biographie",
+    "experience": "Expérience",
+    "education": "Formation",
+    "languagesSpoken": "Langues Parlées",
+    "specialties": "Spécialités",
+    "location": "Emplacement",
+    "consultationFee": "Frais de Consultation",
+    "availability": "Disponibilité",
+    "contact": "Contact",
+    "bookAppointment": "Prendre Rendez-vous",
+    "reviews": "Avis",
+    "ratings": "Évaluations"
+  },
+  "pagination": {
+    "previous": "Précédent",
+    "next": "Suivant",
+    "pages": ["1", "2", "3", "4", "5"]
+  },
+  "header": {
+    "allSpecialities": "Toutes les spécialités"
+  },
+  "appointmentPage": {
+    "form": {
+      "title": "Entrez Vos Informations",
+      "patientNameLabel": "Nom du patient (qui consulte le médecin)",
+      "patientNamePlaceholder": "Entrez le nom du patient",
+      "mobileNumberLabel": "Numéro de téléphone",
+      "mobileNumberPlaceholder": "Entrez le numéro de téléphone",
+      "optionnel": "(optionnel)",
+      "emailPlaceholder": "Entrez l'adresse email"
+    },
+    "buttons": {
+      "book": "Réserver",
+      "cancel": "Annuler"
+    }
+  },
+  "Errors": {
+    "RequiredFirstName": "Le prénom est requis.",
+    "RequiredLastName": "Le nom est requis.",
+    "RequiredUsername": "Le nom d'utilisateur est requis.",
+    "RequiredEmail": "L'adresse e-mail est requise.",
+    "RequiredPassword": "Le mot de passe est requis.",
+    "PasswordMismatch": "Les mots de passe ne correspondent pas."
+  },
+
+  "loading": "Loading...",
+  "update_profile": "Update Profile",
+  "profile": {
+    "noTokenError": "No authentication token found. Please log in.",
+    "fetchError": "Failed to fetch profile data.",
+    "updateSuccess": "Profile updated successfully.",
+    "updateError": "Failed to update profile. Please try again.",
+    "my_profile": "My Profile"
+  },
+  "username": "Username",
+  "first_name": "First Name",
+  "last_name": "Last Name",
+  "email": "Email",
+  "phone_number": "Phone Number",
+  "state": "State",
+  "city": "City",
+  "street": "Street",
+  "spoken_languages": "Spoken Languages"
+}

@@ -1,0 +1,57 @@
+.login {
+    background-image: url('../../assets/login/pexels-andrea-piacquadio-840996\ 1.jpg');
+    background-size: contain;
+    background-position: 100%;
+    background-repeat: no-repeat;
+
+    .box {
+        left: 0;
+        top: 0;
+        width: 50%;
+        border-radius: 0 40px 40px 0;
+    }
+    @media (max-width: 1040px) {
+        & {
+            background-size: cover;
+            .box {
+                width: 70%;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                border-radius: 40px;
+            }
+        }
+    }
+    @media (max-width: 767px) {
+        & {
+            .box {
+                width: 100%;
+                border-radius: 0;
+            }
+        }
+    }
+    @media (max-width: 600px) {
+        & {
+            .box {
+                .contain {
+                    width: 80%;
+                }
+            }
+        }
+    }
+    @media (max-width: 450px) {
+        & {
+            .box {
+                background-color: #fff;
+                .contain {
+                    width: 95%;
+                    form {
+                        input {
+                            background-color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
