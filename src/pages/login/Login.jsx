@@ -1,5 +1,4 @@
 
-import PropTypes from 'prop-types';
 import './Login.scss';
 import { Link, useNavigate } from 'react-router-dom'; // for navigation after login
 import { useState } from 'react';
@@ -131,8 +130,4 @@ export const Login = ({ t }) => {
             </div>
         </div >
     );
-};
-
-Login.propTypes = {
-    t: PropTypes.func.isRequired,
 };

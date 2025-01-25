@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 
 export const BookingConfirmation = ({ t }) => {
     const bookingDetails = {
@@ -300,8 +299,4 @@ export const BookingConfirmation = ({ t }) => {
 
         </>
     )
-}
-
-BookingConfirmation.propTypes = {
-    t: PropTypes.func.isRequired,
 }

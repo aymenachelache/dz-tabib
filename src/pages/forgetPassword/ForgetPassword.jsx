@@ -1,5 +1,4 @@
 
-import PropTypes from 'prop-types';
 import './ForgetPassword.scss';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
@@ -99,8 +98,4 @@ export const ForgetPassword = ({ t }) => {
             </div>
         </div >
     );
-};
-
-ForgetPassword.propTypes = {
-    t: PropTypes.func.isRequired,
 };

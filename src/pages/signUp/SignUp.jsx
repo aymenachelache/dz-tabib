@@ -2,7 +2,6 @@
 
 
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
 import './SignUp.scss';
 import logo from './../../assets/login/logo.png';
@@ -292,8 +291,4 @@ export const SignUp = ({ t }) => {
             </div>
         </div>
     );
-};
-
-SignUp.propTypes = {
-    t: PropTypes.func.isRequired,
 };
