@@ -7,6 +7,7 @@ export const SearchBar = ({ setResults }) => {
   const [ville, setVille] = useState("");
   const [typeAssurance, setTypeAssurance] = useState("");
   const [disponibilite, setDisponibilite] = useState("");
+  const [daysOfWeek, setDaysOfWeek] = useState([]);
 
   // States to hold fetched specialities and assurances
   const [specialities, setSpecialities] = useState([]);
@@ -28,12 +29,14 @@ export const SearchBar = ({ setResults }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/adv_search`); 
-        const { specialities, assurances } = response.data;
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/adv_search`);
+        const { specialities, assurances, days_of_week } = response.data;
 
         setSpecialities(Object.values(specialities));
         setAssurances(Object.values(assurances));
+        setDaysOfWeek(Object.values(days_of_week));
         console.log(response.data);
+        console.log(daysOfWeek);
       } catch (error) {
         console.error("Error fetching specialities and assurances:", error);
       }
@@ -51,7 +54,7 @@ export const SearchBar = ({ setResults }) => {
     setVille(queryParams.get("ville") || "");
     setTypeAssurance(queryParams.get("typeAssurance") || "");
     setDisponibilite(queryParams.get("disponibilite") || "");
-  }, [location.search]);  // Update whenever URL changes
+  }, [location.search,disponibilite]);  // Update whenever URL changes
 
   // Navigation with query params
   const navigate = useNavigate();
@@ -142,8 +145,11 @@ export const SearchBar = ({ setResults }) => {
           className="w-full h-10 border-2 border-sky-500 focus:outline-none focus:border-sky-500 text-sky-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider"
         >
           <option value="">Disponibilité</option>
-          <option value="Disponible">Disponible</option>
-          <option value="Non disponible">Non disponible</option>
+          {daysOfWeek.map((disponibilite, index) => (
+            <option key={index} value={disponibilite}>
+              {disponibilite}
+            </option>
+          ))}
         </select>
       </div>
 
