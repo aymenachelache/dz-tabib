@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Header } from '../../components/header/Header';
 import { Footer } from '../../components/footer/Footer';
 import { DoctorCard } from './DoctorCard';
@@ -142,4 +143,8 @@ export const SearchPage = ({ t }) => {
       <Footer t={t} />
     </>
   );
+};
+
+SearchPage.propTypes = {
+  t: PropTypes.func.isRequired,
 };

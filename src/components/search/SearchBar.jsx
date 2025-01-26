@@ -28,7 +28,7 @@ export const SearchBar = ({ setResults }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/adv_search");  // Replace with actual backend API endpoint
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/evaluate/calculate_rating/adv_search`);  // Replace with actual backend API endpoint
         const { specialities, assurances } = response.data;
 
         setSpecialities(Object.values(specialities));
@@ -63,12 +63,12 @@ export const SearchBar = ({ setResults }) => {
       typeAssurance,
       disponibilite,
     }).toString();
-      navigate(`/search?${queryParams}`);
+    navigate(`/search?${queryParams}`);
   };
 
   const handleSelectChange = (event) => {
     const { name, value } = event.target;
-    
+
     if (name === "specialite") {
       setSpecialite(value);
     } else if (name === "localization") {

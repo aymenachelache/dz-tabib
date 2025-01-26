@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Header } from '../../components/header/Header';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -170,4 +171,8 @@ export const AppointmentPage = ({ t }) => {
             </div>
         </>
     );
+};
+
+AppointmentPage.propTypes = {
+    t: PropTypes.func.isRequired,
 };

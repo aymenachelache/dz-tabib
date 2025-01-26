@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import PropTypes from "prop-types";
 import { Header } from "../components/header/Header";
 import { Footer } from "../components/footer/Footer";
 
@@ -121,4 +122,8 @@ export const WorkingDaysList = ({ t }) => {
       <Footer t={t} />
     </>
   );
+};
+
+WorkingDaysList.propTypes = {
+  t: PropTypes.func.isRequired,
 };

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
 import './homePage.scss';
@@ -396,3 +397,9 @@ export const HomePage = ({ t }) => {
     );
 };
 
+HomePage.propTypes = {
+    t: PropTypes.func.isRequired,
+};
+
+// npm install prop-types
+// /* eslint-disable-next-line react/prop-types */

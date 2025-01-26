@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import './ResetPassword.scss';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useState } from 'react';
@@ -127,4 +128,8 @@ export const ResetPassword = ({ t }) => {
             </div>
         </div>
     );
+};
+
+ResetPassword.propTypes = {
+    t: PropTypes.func.isRequired,
 };

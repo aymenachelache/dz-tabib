@@ -1,10 +1,11 @@
 
 
-
+import React from 'react';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
 import './SignUp.scss';
-import logo from './../../assets/login/logo.png';
+import logo from '../../assets/login/logo.png';
 import axios from 'axios';
 
 export const SignUp = ({ t }) => {
@@ -74,6 +75,8 @@ export const SignUp = ({ t }) => {
         return Object.keys(newErrors).length === 0;
     };
 
+    // src/pages/signUp/SignUp.jsx
+const API_URL = import.meta.env?.VITE_API_URL || process.env.VITE_API_URL || 'http://127.0.0.1:8000'; // Fallback for tests
 
     // Handle form submission
     const handleSubmit = async (e) => {
@@ -291,4 +294,8 @@ export const SignUp = ({ t }) => {
             </div>
         </div>
     );
+};
+
+SignUp.propTypes = {
+    t: PropTypes.func.isRequired,
 };

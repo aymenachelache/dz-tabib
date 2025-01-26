@@ -9,19 +9,20 @@ export const Rating = ({ idDoctor }) => {
   const token = Cookies.get("authToken");
 
 
+
   const calculateAverageRating = async (idDoctor) => {
+    console.log(`DoctorId : ${idDoctor}`)
     try {
       console.log(idDoctor)
-      const response = await axios.put("http://127.0.0.1:8000/evaluate/calculate_rating", null,
-        {params: { id_doctor: idDoctor }}
+      const response = await axios.put(`${import.meta.env.VITE_API_URL}/evaluate/calculate_rating`, null,
+        { params: { id_doctor: idDoctor } }
       );
-      console.log("Moyenne des évaluations:", response.data.average_rating);
+      console.log("Moyenne des évaluations:", response.data);
     } catch (error) {
       console.error("Erreur lors du calcul de la moyenne des évaluations:", error);
     }
   };
 
-  
   // Handle when a star is clicked
   const handleClick = async (newRating) => {
     setRating(newRating); // This will update the rating displayed
@@ -35,7 +36,7 @@ export const Rating = ({ idDoctor }) => {
     };
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/evaluate/create", requestData, {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/evaluate/create`, requestData, {
         headers: {
           "Content-Type": "application/json",
           'Authorization': `Bearer ${token}`, // Add Authorization header with the token
@@ -66,21 +67,23 @@ export const Rating = ({ idDoctor }) => {
 
   // Fetch the user data when the component mounts
   useEffect(() => {
+
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/users/me', {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/users/me`, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
           },
         });
         setUserId(response.data.id); // Set the user ID
+        console.log(`id ${response.data.id}`)
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
     };
-
     fetchData();
+
   }, [token]); // Depend on token so it refetches if token changes
 
   return (
@@ -94,8 +97,8 @@ export const Rating = ({ idDoctor }) => {
             onMouseEnter={() => handleMouseEnter(star)}
             onMouseLeave={handleMouseLeave}
             className={`text-3xl focus:outline-none ${star <= (hoverRating || rating)
-                ? "text-yellow-500" // Filled star
-                : "text-gray-300" // Empty star
+              ? "text-yellow-500" // Filled star
+              : "text-gray-300" // Empty star
               }`}
           >
             ★

@@ -1,4 +1,5 @@
 
+import PropTypes from 'prop-types';
 import { Header } from '../../components/header/Header';
 import { Footer } from '../../components/footer/Footer';
 import { Link, useParams } from 'react-router-dom';
@@ -374,4 +375,9 @@ export const DoctorProfile = ({ t }) => {
             <Footer t={t} />
         </div>
     )
+}
+
+
+DoctorProfile.propTypes = {
+    t: PropTypes.func.isRequired,
 }
