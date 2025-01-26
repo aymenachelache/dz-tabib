@@ -149,7 +149,7 @@ export const MyProfile = ({ t }) => {
                       </a>
                     </p>
                     <p className="my-1">
-                      <strong>{t("daily_visit_limit")}:</strong> {profile.daily_visit_limit}
+                      <strong>{t("visit_price")}:</strong> {profile.visit_price} DA
                     </p>
                     <p className="my-1">
                       <strong>{t("latitude")}:</strong> {profile.latitude}
