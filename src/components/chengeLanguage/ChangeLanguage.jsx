@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import '../../i18n'; // Assurez-vous que le fichier i18n est bien importé
+import '../../i18n.js'; // Assurez-vous que le fichier i18n est bien importé
 
 const ChangeLanguage = () => {
     const { i18n } = useTranslation(); // Utilisation correcte du hook

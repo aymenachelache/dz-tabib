@@ -1,4 +1,4 @@
-import ChangeLanguage from "../chengeLanguage/changeLanguage"
+import ChangeLanguage from "../chengeLanguage/changeLanguage.jsx"
 import logo from '../../assets/dz_tabib.svg'
 import profile from '../../assets/profile_icon.png'
 import { useState } from "react";
