@@ -7,14 +7,12 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { SearchBar } from '../../components/search/SearchBar';
 
-
-
-
 export const Doctors = ({ t }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-
   const [currentPage, setCurrentPage] = useState(parseInt(searchParams.get('page')) || 1);
   const [totalPages, setTotalPages] = useState(1); // Assuming at least 1 page
+  const [doctors, setDoctors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
@@ -23,13 +21,11 @@ export const Doctors = ({ t }) => {
     }
   };
 
-  const [doctors, setDoctors] = useState([]);
   useEffect(() => {
     const fetchDoctors = async () => {
-      // const { limit, page } = getQueryParams();
+      setIsLoading(true); // Set loading to true before fetching data
       const page = parseInt(searchParams.get('page')) || 1; // Default to 1 if undefined
       const limit = parseInt(searchParams.get('limit')) || 10; // Default to 10 if undefined
-
 
       try {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/doctors`, {
@@ -38,29 +34,34 @@ export const Doctors = ({ t }) => {
             limit: limit,
           },
         });
-        console.log(response.data)
         setDoctors(response.data || []);
-        console.log(response.data.doctors)
       } catch (err) {
-        console.log(err)
+        console.log(err);
+      } finally {
+        setIsLoading(false); // Set loading to false after fetching data
       }
     };
 
     fetchDoctors();
-  }, []);
+  }, [currentPage, searchParams]);
 
   return (
     <>
       <Header t={t} />
       <div className='bg-gray-100 pt-14 mt-7'>
         <div className="container min-h-screen mx-auto p-14 bg-white rounded-lg">
-      
           <h1 className="text-2xl font-bold mb-4">All Doctors</h1>
-          {doctors.map((doctor, idx) => (
-            <Link to={`/doctor/${doctor.id}`} key={idx}>
-              <DoctorCard doctor={doctor} t={t} />
-            </Link>
-          ))}
+          {isLoading ? (
+            <div className="flex justify-center items-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+            </div>
+          ) : (
+            doctors.map((doctor, idx) => (
+              <Link to={`/doctor/${doctor.id}`} key={idx}>
+                <DoctorCard doctor={doctor} t={t} />
+              </Link>
+            ))
+          )}
         </div>
         <nav aria-label="Page pagination navigation" className='!text-center'>
           <ul className="inline-flex -space-x-px text-sm my-10 mx-auto">
@@ -108,10 +109,8 @@ export const Doctors = ({ t }) => {
       </div>
       <Footer t={t} />
     </>
-  )
-}
-
-
+  );
+};
 
 Doctors.propTypes = {
   t: PropTypes.func.isRequired,

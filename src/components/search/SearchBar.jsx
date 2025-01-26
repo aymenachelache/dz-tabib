@@ -5,7 +5,7 @@ import axios from "axios";
 export const SearchBar = ({ setResults }) => {
   const [specialite, setSpecialite] = useState("");
   const [ville, setVille] = useState("");
-  const [typeAssurance, setTypeAssurance] = useState("");
+  const [assurance, setassurance] = useState("");
   const [disponibilite, setDisponibilite] = useState("");
   const [daysOfWeek, setDaysOfWeek] = useState([]);
 
@@ -52,7 +52,7 @@ export const SearchBar = ({ setResults }) => {
   useEffect(() => {
     setSpecialite(queryParams.get("specialite") || "");
     setVille(queryParams.get("ville") || "");
-    setTypeAssurance(queryParams.get("typeAssurance") || "");
+    setassurance(queryParams.get("assurance") || "");
     setDisponibilite(queryParams.get("disponibilite") || "");
   }, [location.search,disponibilite]);  // Update whenever URL changes
 
@@ -63,7 +63,7 @@ export const SearchBar = ({ setResults }) => {
     const queryParams = new URLSearchParams({
       specialite,
       ville,
-      typeAssurance,
+      assurance,
       disponibilite,
     }).toString();
     navigate(`/search?${queryParams}`);
@@ -77,7 +77,7 @@ export const SearchBar = ({ setResults }) => {
     } else if (name === "localization") {
       setVille(value);
     } else if (name === "assurance") {
-      setTypeAssurance(value);
+      setassurance(value);
     } else if (name === "disponibilite") {
       setDisponibilite(value);
     }
@@ -123,7 +123,7 @@ export const SearchBar = ({ setResults }) => {
       <div className="w-72">
         <select
           name="assurance"
-          value={typeAssurance}
+          value={assurance}
           onChange={handleSelectChange}
           className="w-full h-10 border-2 border-sky-500 focus:outline-none focus:border-sky-500 text-sky-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider"
         >

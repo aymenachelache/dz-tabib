@@ -15,11 +15,12 @@ export const SearchPage = ({ t }) => {
   const [ville, setVille] = useState(searchParams.get('ville') || '');
   const [assurance, setassurance] = useState(searchParams.get('assurance') || '');
   const [disponibilite, setDisponibilite] = useState(searchParams.get('disponibilite') || '');
-  
+
   // State to handle pagination
   const [currentPage, setCurrentPage] = useState(parseInt(searchParams.get('page')) || 1);
   const [totalPages, setTotalPages] = useState(1);
   const [doctors, setDoctors] = useState([]);
+  const [loading, setLoading] = useState(false); // Loading state
 
   // Function to handle page changes
   const handlePageChange = (page) => {
@@ -39,9 +40,9 @@ export const SearchPage = ({ t }) => {
     const limit = parseInt(searchParams.get('limit')) || 10;
 
     // Clear doctors list before fetching new data
-    setDoctors([]); 
+    setDoctors([]);
+    setLoading(true); // Start loading
 
-    // Fetch doctors data
     const fetchDoctors = async () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/adv_search/search`, {
@@ -51,28 +52,21 @@ export const SearchPage = ({ t }) => {
             specialite: specialiteParam,
             ville: villeParam,
             assurance: assuranceParam,
-            disponibilite: disponibiliteParam
+            disponibilite: disponibiliteParam,
           },
         });
 
         setDoctors(response.data.doctors || []);
         setTotalPages(response.data.totalPages || 1); // Assuming the response includes totalPages
-        console.log(`data sending ${{
-          page,
-          limit,
-          specialite: specialiteParam,
-          ville: villeParam,
-          assurance: assuranceParam,
-          disponibilite: disponibiliteParam
-        }}`);
-        console.log(response.data);
       } catch (err) {
         console.error('Error fetching doctors:', err);
+      } finally {
+        setLoading(false); // Stop loading
       }
     };
 
     fetchDoctors();
-  }, [searchParams, currentPage]); // Re-fetch when query params or page changes
+  }, [searchParams, currentPage]);
 
   // Update the specialite when searchParams change
   useEffect(() => {
@@ -91,7 +85,11 @@ export const SearchPage = ({ t }) => {
             <SearchBar setSearchParams={setSearchParams} /> {/* Passing setSearchParams to SearchBar */}
           </div>
           <h1 className="text-2xl font-bold mb-4">All Doctors</h1>
-          {doctors.length > 0 ? (
+          {loading ? (
+            <div className="flex justify-center items-center h-48">
+              <div className="w-12 h-12 border-4 border-blue-500 border-dashed rounded-full animate-spin"></div>
+            </div>
+          ) : doctors.length > 0 ? (
             doctors.map((doctor, idx) => (
               <Link to={`/doctor/${doctor.id}`} key={idx}>
                 <DoctorCard doctor={doctor} t={t} />
