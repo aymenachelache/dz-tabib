@@ -88,7 +88,7 @@ export const Rating = ({ idDoctor }) => {
 
   return (
     <div className="p-8 !text-center">
-      <h1 className="text-2xl font-bold mb-4  !text-center">Rate this product:</h1>
+      <h1 className="text-2xl font-bold mb-4  !text-center">Rate this Doctor:</h1>
       <div className="flex space-x-1  !text-center">
         {[1, 2, 3, 4, 5].map((star) => (
           <button

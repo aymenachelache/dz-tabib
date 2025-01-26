@@ -1,11 +1,21 @@
 import { Builder, By, until } from "selenium-webdriver";
 import { expect } from "chai";
+import chrome from "selenium-webdriver/chrome.js"; // Import chrome module with .js extension
 
 describe("Doctors Page Test", function () {
   let driver;
 
   before(async function () {
-    driver = await new Builder().forBrowser("chrome").build();
+    // Specify the path to ChromeDriver if it's not in the system PATH
+    const service = new chrome.ServiceBuilder("C:/path/to/chromedriver.exe"); // Update the path to your chromedriver
+    const options = new chrome.Options();
+
+    // Build the driver with specified service and options
+    driver = await new Builder()
+      .forBrowser("chrome")
+      .setChromeOptions(options)
+      .setChromeService(service)
+      .build();
   });
 
   it("should display doctors and paginate", async function () {
