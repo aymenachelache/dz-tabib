@@ -13,7 +13,6 @@ const DoctorAppointment = ({ t }) => {
     const [error, setError] = useState(null);
     const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
 
-    // Handle date change
     const handleDateChange = (date) => {
         setSelectedDate(date);
     };
@@ -22,11 +21,45 @@ const DoctorAppointment = ({ t }) => {
         setIsDatePickerVisible(!isDatePickerVisible);
     };
 
-    const updateStatus3 = async (appointmentId, newStatus) => {
+    const fetchAppointments = async () => {
+        if (!selectedDate) return;
+
+        setLoading(true);
+        setError(null);
+
         try {
+            const year = selectedDate.getFullYear();
+            const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
+            const day = String(selectedDate.getDate()).padStart(2, '0');
+            const formattedDate = `${year}-${month}-${day}`;
+
             const token = Cookies.get("authToken");
-            await axios.patch(
-                `${import.meta.env.VITE_API_URL}/doctor/appointments/${appointmentId}/status`,
+
+            const response = await axios.get(
+                `${import.meta.env.VITE_API_URL}/doctor/appointments/day?date=${formattedDate}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            setAppointments(response.data || []);
+        } catch (err) {
+            console.log(err);
+            setError('Failed to fetch appointments.');
+            setAppointments([]);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const updateStatus = async (appointmentId, newStatus) => {
+        const token = Cookies.get("authToken");
+
+        try {
+            const response = await axios.put(
+                `${import.meta.env.VITE_API_URL}/doctor/appointment/${appointmentId}`,
                 { status: newStatus },
                 {
                     headers: {
@@ -34,59 +67,22 @@ const DoctorAppointment = ({ t }) => {
                     },
                 }
             );
-            // Update the status locally
-            setAppointments((prevAppointments) =>
-                prevAppointments.map((appointment) =>
-                    appointment.id === appointmentId
-                        ? { ...appointment, status: newStatus }
-                        : appointment
-                )
-            );
-        } catch (err) {
-            console.error("Failed to update status:", err);
+
+            if (response.data) {
+                // Update the local state
+                setAppointments((prevAppointments) =>
+                    prevAppointments.map((appointment) =>
+                        appointment.id === appointmentId
+                            ? { ...appointment, status: newStatus }
+                            : appointment
+                    )
+                );
+            }
+        } catch (error) {
+            console.error("Failed to update status:", error);
+            alert("Failed to update appointment status.");
         }
     };
-
-    useEffect(() => {
-        const fetchAppointments = async () => {
-            if (!selectedDate) return;
-
-            setLoading(true);
-            setError(null);
-
-            try {
-                const year = selectedDate.getFullYear();
-                const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
-                const day = String(selectedDate.getDate()).padStart(2, '0');
-                const formattedDate = `${year}-${month}-${day}`;
-
-                const token = Cookies.get("authToken");
-
-                const response = await axios.get(
-                    `${import.meta.env.VITE_API_URL}/doctor/appointments/day?date=${formattedDate}`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                );
-
-                if (response.data && response.data.length > 0) {
-                    setAppointments(response.data);
-                } else {
-                    setAppointments([]);
-                }
-            } catch (err) {
-                console.error(err);
-                setError('Failed to fetch appointments.');
-                setAppointments([]);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchAppointments();
-    }, [selectedDate]);
 
     const getStatusColor = (status) => {
         switch (status) {
@@ -101,25 +97,25 @@ const DoctorAppointment = ({ t }) => {
         }
     };
 
+    useEffect(() => {
+        fetchAppointments();
+    }, [selectedDate]);
+
     return (
         <>
             <Header t={t} />
             <div className="p-5 font-sans bg-gray-50 min-h-screen">
                 <div className="max-w-7xl mx-auto">
                     <h1 className="text-3xl font-bold mb-6 text-gray-800">Doctor's Appointments</h1>
-
-                    <div className="flex justify-end mb-4">
+                    <div className="relative mb-4">
                         <button
                             onClick={toggleDatePickerVisibility}
-                            className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 z-20"
+                            className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
                         >
                             {isDatePickerVisible ? "Hide Date Picker" : "Show Date Picker"}
                         </button>
-                    </div>
-
-                    <div className="relative">
                         {isDatePickerVisible && (
-                            <div className="absolute top-14 right-0 bg-white p-6 rounded-lg shadow-lg z-10">
+                            <div className="absolute top-12 bg-white p-6 rounded-lg shadow-lg z-10">
                                 <h2 className="text-xl font-semibold mb-4 text-gray-700">Select a date</h2>
                                 <DatePicker
                                     selected={selectedDate}
@@ -131,79 +127,59 @@ const DoctorAppointment = ({ t }) => {
                             </div>
                         )}
                     </div>
-
                     {loading && (
                         <div className="flex justify-center items-center py-8">
                             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
                         </div>
                     )}
-
                     {error && (
                         <div className="bg-red-50 p-4 rounded-lg mb-6">
-                            <p className="text-red-600 flex items-center">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-5 w-5 mr-2"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        fillRule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293-1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                                        clipRule="evenodd"
-                                    />
-                                </svg>
-                                {error}
-                            </p>
+                            <p className="text-red-600 flex items-center">{error}</p>
                         </div>
                     )}
-
-                    {loading ? (
-                        <p className="text-gray-600 text-center py-8">Loading appointments...</p>
-                    ) : appointments.length > 0 ? (
+                    {appointments.length > 0 ? (
                         <div className="overflow-x-auto bg-white rounded-lg shadow-md">
                             <table className="min-w-full">
                                 <thead className="bg-blue-50">
                                     <tr>
-                                        <th className="px-6 py-4 text-left text-xs font-semibold text-blue-600 uppercase tracking-wider">Patient Name</th>
-                                        <th className="px-6 py-4 text-left text-xs font-semibold text-blue-600 uppercase tracking-wider">Phone Number</th>
-                                        <th className="px-6 py-4 text-left text-xs font-semibold text-blue-600 uppercase tracking-wider">Appointment Date</th>
-                                        <th className="px-6 py-4 text-left text-xs font-semibold text-blue-600 uppercase tracking-wider">Reason</th>
-                                        <th className="px-6 py-4 text-left text-xs font-semibold text-blue-600 uppercase tracking-wider">Status</th>
-                                        <th className="px-6 py-4 text-left text-xs font-semibold text-blue-600 uppercase tracking-wider">Actions</th>
+                                        <th className="px-6 py-4">Patient Name</th>
+                                        <th className="px-6 py-4">Phone</th>
+                                        <th className="px-6 py-4">Date</th>
+                                        <th className="px-6 py-4">Reason</th>
+                                        <th className="px-6 py-4">Status</th>
+                                        <th className="px-6 py-4">Type</th>
+                                        <th className="px-6 py-4">Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-gray-100">
+                                <tbody>
                                     {appointments.map((appointment) => (
-                                        <tr key={appointment.id} className="hover:bg-gray-50 transition duration-150 ease-in-out">
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                                                {`${appointment.patient_first_name} ${appointment.patient_last_name}`}
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                                {appointment.patient_phone_number}
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                                {appointment.appointment_date}
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                                {appointment.reason || "No reason provided"}
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm">
+                                        <tr key={appointment.id} className="hover:bg-gray-50">
+                                            <td className="px-6 py-4">{`${appointment.patient_first_name} ${appointment.patient_last_name}`}</td>
+                                            <td className="px-6 py-4">{appointment.patient_phone_number}</td>
+                                            <td className="px-6 py-4">{appointment.appointment_date}</td>
+                                            <td className="px-6 py-4">{appointment.reason || "No reason provided"}</td>
+                                            <td className="px-6 py-4">
                                                 <span
-                                                    className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(
+                                                    className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(
                                                         appointment.status
                                                     )}`}
                                                 >
                                                     {appointment.status}
                                                 </span>
                                             </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                                <button
-                                                    onClick={() => updateStatus3(appointment.id, 'completed')}
-                                                    className="text-green-500 hover:underline"
+                                            <td className="px-6 py-4">{appointment.type}</td>
+                                            <td className="px-6 py-4">
+                                                <select
+                                                    value={appointment.status}
+                                                    onChange={(e) =>
+                                                        updateStatus(appointment.id, e.target.value)
+                                                    }
+                                                    className="border px-2 py-1 rounded-lg"
                                                 >
-                                                    Mark as Completed
-                                                </button>
+                                                    <option value="pending">Pending</option>
+                                                    <option value="completed">Completed</option>
+                                                    <option value="cancelled">Cancelled</option>
+                                                </select>
                                             </td>
                                         </tr>
                                     ))}
