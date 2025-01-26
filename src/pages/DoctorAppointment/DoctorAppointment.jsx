@@ -18,28 +18,50 @@ const DoctorAppointment = ({ t }) => {
         setSelectedDate(date);
     };
 
-    // Toggle visibility of the date picker div
     const toggleDatePickerVisibility = () => {
         setIsDatePickerVisible(!isDatePickerVisible);
     };
 
+    const updateStatus3 = async (appointmentId, newStatus) => {
+        try {
+            const token = Cookies.get("authToken");
+            await axios.patch(
+                `${import.meta.env.VITE_API_URL}/doctor/appointments/${appointmentId}/status`,
+                { status: newStatus },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            // Update the status locally
+            setAppointments((prevAppointments) =>
+                prevAppointments.map((appointment) =>
+                    appointment.id === appointmentId
+                        ? { ...appointment, status: newStatus }
+                        : appointment
+                )
+            );
+        } catch (err) {
+            console.error("Failed to update status:", err);
+        }
+    };
+
     useEffect(() => {
         const fetchAppointments = async () => {
-            if (!selectedDate) return; // Ne rien faire si aucune date n'est sélectionnée
+            if (!selectedDate) return;
 
             setLoading(true);
             setError(null);
 
             try {
-                // Formater la date au format "YYYY-MM-DD"
                 const year = selectedDate.getFullYear();
-                const month = String(selectedDate.getMonth() + 1).padStart(2, '0'); // Les mois commencent à 0
+                const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
                 const day = String(selectedDate.getDate()).padStart(2, '0');
                 const formattedDate = `${year}-${month}-${day}`;
 
-                const token = Cookies.get("authToken"); // Récupérer le token depuis les cookies
+                const token = Cookies.get("authToken");
 
-                // Faire la requête API avec la date sélectionnée
                 const response = await axios.get(
                     `${import.meta.env.VITE_API_URL}/doctor/appointments/day?date=${formattedDate}`,
                     {
@@ -49,35 +71,33 @@ const DoctorAppointment = ({ t }) => {
                     }
                 );
 
-                // Mettre à jour les rendez-vous
                 if (response.data && response.data.length > 0) {
-                    setAppointments(response.data); // Mettre à jour avec les nouveaux rendez-vous
+                    setAppointments(response.data);
                 } else {
-                    setAppointments([]); // Vider la liste si aucun rendez-vous n'est trouvé
+                    setAppointments([]);
                 }
             } catch (err) {
-                console.log(err);
+                console.error(err);
                 setError('Failed to fetch appointments.');
-                setAppointments([]); // Vider la liste en cas d'erreur
+                setAppointments([]);
             } finally {
                 setLoading(false);
             }
         };
 
         fetchAppointments();
-    }, [selectedDate]); // Déclencher useEffect chaque fois que selectedDate change
+    }, [selectedDate]);
 
-    // Fonction pour déterminer la couleur du statut
     const getStatusColor = (status) => {
         switch (status) {
             case 'pending':
-                return 'bg-yellow-100 text-yellow-800'; // Jaune pour "pending"
+                return 'bg-yellow-100 text-yellow-800';
             case 'cancelled':
-                return 'bg-red-100 text-red-800'; // Rouge pour "cancelled"
+                return 'bg-red-100 text-red-800';
             case 'completed':
-                return 'bg-green-100 text-green-800'; // Vert pour "completed"
+                return 'bg-green-100 text-green-800';
             default:
-                return 'bg-gray-100 text-gray-800'; // Gris par défaut
+                return 'bg-gray-100 text-gray-800';
         }
     };
 
@@ -88,19 +108,16 @@ const DoctorAppointment = ({ t }) => {
                 <div className="max-w-7xl mx-auto">
                     <h1 className="text-3xl font-bold mb-6 text-gray-800">Doctor's Appointments</h1>
 
-                    {/* Bouton pour afficher/masquer la div */}
                     <div className="flex justify-end mb-4">
                         <button
                             onClick={toggleDatePickerVisibility}
                             className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 z-20"
                         >
-                            {isDatePickerVisible ? "Masquer le sélecteur de date" : "Afficher le sélecteur de date"}
+                            {isDatePickerVisible ? "Hide Date Picker" : "Show Date Picker"}
                         </button>
                     </div>
 
-                    {/* Conteneur parent pour le calendrier (position absolue ajustée) */}
                     <div className="relative">
-                        {/* Date Picker Card (position absolue ajustée) */}
                         {isDatePickerVisible && (
                             <div className="absolute top-14 right-0 bg-white p-6 rounded-lg shadow-lg z-10">
                                 <h2 className="text-xl font-semibold mb-4 text-gray-700">Select a date</h2>
@@ -115,14 +132,12 @@ const DoctorAppointment = ({ t }) => {
                         )}
                     </div>
 
-                    {/* Loading Spinner */}
                     {loading && (
                         <div className="flex justify-center items-center py-8">
                             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
                         </div>
                     )}
 
-                    {/* Error Message */}
                     {error && (
                         <div className="bg-red-50 p-4 rounded-lg mb-6">
                             <p className="text-red-600 flex items-center">
@@ -143,7 +158,6 @@ const DoctorAppointment = ({ t }) => {
                         </div>
                     )}
 
-                    {/* Appointments Table */}
                     {loading ? (
                         <p className="text-gray-600 text-center py-8">Loading appointments...</p>
                     ) : appointments.length > 0 ? (
@@ -156,7 +170,7 @@ const DoctorAppointment = ({ t }) => {
                                         <th className="px-6 py-4 text-left text-xs font-semibold text-blue-600 uppercase tracking-wider">Appointment Date</th>
                                         <th className="px-6 py-4 text-left text-xs font-semibold text-blue-600 uppercase tracking-wider">Reason</th>
                                         <th className="px-6 py-4 text-left text-xs font-semibold text-blue-600 uppercase tracking-wider">Status</th>
-                                        <th className="px-6 py-4 text-left text-xs font-semibold text-blue-600 uppercase tracking-wider">Type</th>
+                                        <th className="px-6 py-4 text-left text-xs font-semibold text-blue-600 uppercase tracking-wider">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-100">
@@ -184,7 +198,12 @@ const DoctorAppointment = ({ t }) => {
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                                {appointment.type}
+                                                <button
+                                                    onClick={() => updateStatus3(appointment.id, 'completed')}
+                                                    className="text-green-500 hover:underline"
+                                                >
+                                                    Mark as Completed
+                                                </button>
                                             </td>
                                         </tr>
                                     ))}
