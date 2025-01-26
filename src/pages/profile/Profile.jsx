@@ -98,7 +98,7 @@ export const MyProfile = ({ t }) => {
                 </div>
                 <div>
                   <h1 className="text-2xl font-semibold capitalize">
-                  {profile.is_doctor ? t("doctorCard.doctor") : ""} {`${profile.first_name} ${profile.last_name}`}
+                    {profile.is_doctor ? t("doctorCard.doctor") : ""} {`${profile.first_name} ${profile.last_name}`}
                   </h1>
                   <p className="text-gray-500">
                     {profile.username}
@@ -129,7 +129,7 @@ export const MyProfile = ({ t }) => {
                 {profile.is_doctor && (
                   <div>
                     <p className="my-1">
-                      <strong>{t("specialization")}:</strong> {profile.specialization_name}
+                      <strong>{t("specializedIn")}:</strong> {profile.specialization_name}
                     </p>
                     <p className="my-1">
                       <strong>{t("spoken_languages")}:</strong> {profile.spoken_languages}
@@ -188,23 +188,21 @@ export const MyProfile = ({ t }) => {
               <div className="col-span-1 max-md:col-span-3 bg-blue-50 p-6 rounded-lg shadow-md">
                 <h2 className="text-xl font-bold mb-4">Information</h2>
                 <div className="mb-4">
-                  <p className="text-sm mt-1">
-                    <span className="font-medium">{t("doctorCard.specializedIn")}</span>{" "}
-                    {profile.specialization_name}
-                  </p>
                   {/* Location */}
-                  <p className="text-sm text-gray-600 mt-2">
-                    {t("doctorCard.location")} {profile.street}
-                  </p>
-                  <p className="text-sm text-gray-600 mt-2">
-                    {t("doctorCard.location")} {profile.city},{profile.state}, Algeria
-                  </p>
+                  {profile.is_doctor &&
+                    <>
+                      <p className="text-sm text-gray-600 mt-2">
+                        {t("doctorCard.location")} {profile.street}
+                      </p>
+                      <p className="text-sm text-gray-600 mt-2">
+                        {t("doctorCard.location")} {profile.city},{profile.state}, Algeria
+                      </p>
+                    </>
+                  }
                   <p className="text-sm text-gray-600">{t("doctorCard.phone")} {profile.phone_number}</p>
 
                 </div>
               </div>
-
-
 
             </div>
           </div>
