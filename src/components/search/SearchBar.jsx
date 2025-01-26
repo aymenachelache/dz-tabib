@@ -28,7 +28,7 @@ export const SearchBar = ({ setResults }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/evaluate/calculate_rating/adv_search`);  // Replace with actual backend API endpoint
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/adv_search`); 
         const { specialities, assurances } = response.data;
 
         setSpecialities(Object.values(specialities));

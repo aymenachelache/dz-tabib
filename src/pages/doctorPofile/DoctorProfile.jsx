@@ -245,7 +245,7 @@ export const DoctorProfile = ({ t }) => {
                                 {/* Years of Experience */}
                                 <div className="flex items-center">
                                     <strong className="w-48 text-gray-600">{t("years_of_experience")}:</strong>
-                                    <span className="text-gray-900 font-medium">{profile.experience_start_date} {t("years")}</span>
+                                    <span className="text-gray-900 font-medium">{profile.years_of_experience} {t("years")}</span>
                                 </div>
 
                                 {/* Zoom Link */}
