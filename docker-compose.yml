@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  vite-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80" # Maps local port 3000 to container's port 80
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./dist:/usr/share/nginx/html # Optional: Sync built files (if you need local changes reflected)
