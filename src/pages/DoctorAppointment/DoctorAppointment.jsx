@@ -47,7 +47,7 @@ const DoctorAppointment = ({ t }) => {
             setAppointments(response.data || []);
         } catch (err) {
             console.log(err);
-            setError('Failed to fetch appointments.');
+            setError('No appointments for this date..');
             setAppointments([]);
         } finally {
             setLoading(false);
@@ -187,7 +187,7 @@ const DoctorAppointment = ({ t }) => {
                             </table>
                         </div>
                     ) : (
-                        <p className="text-gray-600 text-center py-8">No appointments for this date.</p>
+                        <p className="text-gray-600 text-center py-8">Sélectionnez une date dans l'agenda.</p>
                     )}
                 </div>
             </div>
