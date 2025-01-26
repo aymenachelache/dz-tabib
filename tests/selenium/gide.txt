@@ -1,0 +1,5 @@
+npm install selenium-webdriver mocha chai
+
+npx mocha test_login.js
+npx mocha test_signup.js
+npx mocha test_doctors.js
