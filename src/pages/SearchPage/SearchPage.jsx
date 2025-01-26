@@ -13,7 +13,7 @@ export const SearchPage = ({ t }) => {
   // State to hold query parameters
   const [specialite, setSpecialite] = useState(searchParams.get('specialite') || '');
   const [ville, setVille] = useState(searchParams.get('ville') || '');
-  const [typeAssurance, setTypeAssurance] = useState(searchParams.get('typeAssurance') || '');
+  const [assurance, setassurance] = useState(searchParams.get('assurance') || '');
   const [disponibilite, setDisponibilite] = useState(searchParams.get('disponibilite') || '');
   
   // State to handle pagination
@@ -33,7 +33,7 @@ export const SearchPage = ({ t }) => {
   useEffect(() => {
     const specialiteParam = searchParams.get('specialite') || '';
     const villeParam = searchParams.get('ville') || '';
-    const typeAssuranceParam = searchParams.get('typeAssurance') || '';
+    const assuranceParam = searchParams.get('assurance') || '';
     const disponibiliteParam = searchParams.get('disponibilite') || '';
     const page = parseInt(searchParams.get('page')) || 1;
     const limit = parseInt(searchParams.get('limit')) || 10;
@@ -50,13 +50,21 @@ export const SearchPage = ({ t }) => {
             limit,
             specialite: specialiteParam,
             ville: villeParam,
-            typeAssurance: typeAssuranceParam,
+            assurance: assuranceParam,
             disponibilite: disponibiliteParam
           },
         });
 
         setDoctors(response.data.doctors || []);
         setTotalPages(response.data.totalPages || 1); // Assuming the response includes totalPages
+        console.log(`data sending ${{
+          page,
+          limit,
+          specialite: specialiteParam,
+          ville: villeParam,
+          assurance: assuranceParam,
+          disponibilite: disponibiliteParam
+        }}`);
         console.log(response.data);
       } catch (err) {
         console.error('Error fetching doctors:', err);
