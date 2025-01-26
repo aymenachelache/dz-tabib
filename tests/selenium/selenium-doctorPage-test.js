@@ -1,5 +1,5 @@
-const { Builder, By, until } = require("selenium-webdriver");
-const { expect } = require("chai");
+import { Builder, By, until } from "selenium-webdriver";
+import { expect } from "chai";
 
 describe("Doctors Page Test", function () {
   let driver;
