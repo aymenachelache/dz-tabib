@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const SearchBar = ({ setResults }) => {
   const [specialite, setSpecialite] = useState("");
-  const [ville, setVille] = useState("");
+  const [localization, setLocalization] = useState("");
   const [assurance, setassurance] = useState("");
   const [disponibilite, setDisponibilite] = useState("");
   const [daysOfWeek, setDaysOfWeek] = useState([]);
@@ -14,7 +14,7 @@ export const SearchBar = ({ setResults }) => {
   const [assurances, setAssurances] = useState([]);
 
   // List of 58 Algerian cities
-  const villesAlgerie = [
+  const localizationsAlgerie = [
     "Alger", "Oran", "Constantine", "Annaba", "Blida", "Batna", "Sétif", "Chlef", "Tizi Ouzou",
     "Béjaïa", "Skikda", "Sidi Bel Abbès", "Tlemcen", "Ghardaïa", "Mostaganem", "Biskra",
     "Tébessa", "El Oued", "Tiaret", "Ouargla", "Djelfa", "M'sila", "Jijel", "Relizane",
@@ -51,10 +51,10 @@ export const SearchBar = ({ setResults }) => {
 
   useEffect(() => {
     setSpecialite(queryParams.get("specialite") || "");
-    setVille(queryParams.get("ville") || "");
+    setLocalization(queryParams.get("localization") || "");
     setassurance(queryParams.get("assurance") || "");
     setDisponibilite(queryParams.get("disponibilite") || "");
-  }, [location.search,disponibilite]);  // Update whenever URL changes
+  }, [location.search]);  // Update whenever URL changes
 
   // Navigation with query params
   const navigate = useNavigate();
@@ -62,7 +62,7 @@ export const SearchBar = ({ setResults }) => {
   const handleSearch = () => {
     const queryParams = new URLSearchParams({
       specialite,
-      ville,
+      localization,
       assurance,
       disponibilite,
     }).toString();
@@ -75,7 +75,7 @@ export const SearchBar = ({ setResults }) => {
     if (name === "specialite") {
       setSpecialite(value);
     } else if (name === "localization") {
-      setVille(value);
+      setLocalization(value);
     } else if (name === "assurance") {
       setassurance(value);
     } else if (name === "disponibilite") {
@@ -102,18 +102,18 @@ export const SearchBar = ({ setResults }) => {
         </select>
       </div>
 
-      {/* Ville Dropdown */}
+      {/* Localization Dropdown */}
       <div className="w-72">
         <select
           name="localization"
-          value={ville}
+          value={localization}
           onChange={handleSelectChange}
           className="w-full h-10 border-2 border-sky-500 focus:outline-none focus:border-sky-500 text-sky-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider"
         >
-          <option value="">Ville</option>
-          {villesAlgerie.map((ville, index) => (
-            <option key={index} value={ville}>
-              {ville}
+          <option value="">Localization</option>
+          {localizationsAlgerie.map((localization, index) => (
+            <option key={index} value={localization}>
+              {localization}
             </option>
           ))}
         </select>
@@ -145,9 +145,9 @@ export const SearchBar = ({ setResults }) => {
           className="w-full h-10 border-2 border-sky-500 focus:outline-none focus:border-sky-500 text-sky-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider"
         >
           <option value="">Disponibilité</option>
-          {daysOfWeek.map((disponibilite, index) => (
-            <option key={index} value={disponibilite}>
-              {disponibilite}
+          {daysOfWeek.map((day, index) => (
+            <option key={index} value={day}>
+              {day}
             </option>
           ))}
         </select>

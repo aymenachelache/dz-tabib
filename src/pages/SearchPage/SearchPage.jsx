@@ -12,7 +12,7 @@ export const SearchPage = ({ t }) => {
 
   // State to hold query parameters
   const [specialite, setSpecialite] = useState(searchParams.get('specialite') || '');
-  const [ville, setVille] = useState(searchParams.get('ville') || '');
+  const [localization, setLocalization] = useState(searchParams.get('localization') || '');
   const [assurance, setassurance] = useState(searchParams.get('assurance') || '');
   const [disponibilite, setDisponibilite] = useState(searchParams.get('disponibilite') || '');
 
@@ -33,7 +33,7 @@ export const SearchPage = ({ t }) => {
   // Fetch doctors data when query params or currentPage change
   useEffect(() => {
     const specialiteParam = searchParams.get('specialite') || '';
-    const villeParam = searchParams.get('ville') || '';
+    const localizationParam = searchParams.get('localization') || '';
     const assuranceParam = searchParams.get('assurance') || '';
     const disponibiliteParam = searchParams.get('disponibilite') || '';
     const page = parseInt(searchParams.get('page')) || 1;
@@ -50,7 +50,7 @@ export const SearchPage = ({ t }) => {
             page,
             limit,
             specialite: specialiteParam,
-            ville: villeParam,
+            localization: localizationParam,
             assurance: assuranceParam,
             disponibilite: disponibiliteParam,
           },
