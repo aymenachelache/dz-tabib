@@ -82,9 +82,9 @@ export const SearchPage = ({ t }) => {
       <div className="bg-gray-100 pt-14 mt-7">
         <div className="container min-h-screen mx-auto p-14 bg-white rounded-lg">
           <div className="mb-6">
-            <SearchBar setSearchParams={setSearchParams} /> {/* Passing setSearchParams to SearchBar */}
+            <SearchBar setSearchParams={setSearchParams} t={t} /> {/* Passing setSearchParams to SearchBar */}
           </div>
-          <h1 className="text-2xl font-bold mb-4">All Doctors</h1>
+          <h1 className="text-2xl font-bold mb-4">{t("searchPage.allDoctors")}</h1>
           {loading ? (
             <div className="flex justify-center items-center h-48">
               <div className="w-12 h-12 border-4 border-blue-500 border-dashed rounded-full animate-spin"></div>
@@ -96,7 +96,7 @@ export const SearchPage = ({ t }) => {
               </Link>
             ))
           ) : (
-            <p>No doctors found matching your criteria.</p>
+            <p>{t("searchPage.noDoctorsFound")}</p>
           )}
         </div>
 

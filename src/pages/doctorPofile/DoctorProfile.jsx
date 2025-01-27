@@ -235,7 +235,7 @@ export const DoctorProfile = ({ t }) => {
                                 </div>
                             </div>
                             <div className='flex justify-center items-center text-center'>
-                                <Rating idDoctor={profile.id} />
+                                <Rating idDoctor={profile.id} t={t} />
                             </div>
                         </div>
 

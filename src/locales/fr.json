@@ -150,13 +150,15 @@
     "education": "Formation",
     "languagesSpoken": "Langues Parlées",
     "specialties": "Spécialités",
-    "location": "Emplacement",
     "consultationFee": "Frais de Consultation",
     "availability": "Disponibilité",
     "contact": "Contact",
     "bookAppointment": "Prendre Rendez-vous",
     "reviews": "Avis",
-    "ratings": "Évaluations"
+    "ratings": "Évaluations",
+    "doctor": "Dr.",
+    "location": "Adresse",
+    "phone": "Téléphone"
   },
   "pagination": {
     "previous": "Précédent",
@@ -174,14 +176,47 @@
       "mobileNumberLabel": "Numéro de téléphone",
       "mobileNumberPlaceholder": "Entrez le numéro de téléphone",
       "optionnel": "(optionnel)",
-      "emailPlaceholder": "Entrez l'adresse email"
+      "emailPlaceholder": "Entrez l'adresse email",
+      "Reason": "Raison",
+      "Enter_Reason": "Entrez la raison de votre rendez-vous",
+      "appointmentTypeLabel": "Type de rendez-vous"
+
     },
     "buttons": {
       "book": "Réserver",
       "cancel": "Annuler"
     }
   },
+  "update_profile": "Update Profile",
+  "profile": {
+    "edit_profile": "Modifier le profil",
+    "update": "Mettre à jour",
+    "fetchError": "Erreur lors de la récupération du profil",
+    "updateSuccess": "Profile updated successfully.",
+    "updateError": "Failed to update profile. Please try again.",
+    "my_profile": "My Profile",
+    "noTokenError": "Aucun jeton d'authentification trouvé. Veuillez vous connecter."
+  },
+  "username": "Nom d'utilisateur",
+  "first_name": "Prénom",
+  "last_name": "Nom de famille",
+  "email": "Email",
+  "phone_number": "Numéro de téléphone",
+  "experience_start_date": "Date de début d'expérience",
+  "state": "État",
+  "city": "Ville",
+  "street": "Rue",
+  "spoken_languages": "Langues parlées",
+  "zoom_link": "Lien Zoom",
+  "visit_price": "Prix de la visite",
+  "specialization_id": "Spécialisation",
+  "latitude": "Latitude",
+  "longitude": "Longitude",
+  "select_state": "Sélectionnez un état",
+  "select_languages": "Sélectionnez les langues",
+  "loading": "Chargement...",
   "Errors": {
+    "UnknownError": "Une erreur inconnue s'est produite",
     "RequiredFirstName": "Le prénom est requis.",
     "RequiredLastName": "Le nom est requis.",
     "RequiredUsername": "Le nom d'utilisateur est requis.",
@@ -190,22 +225,89 @@
     "PasswordMismatch": "Les mots de passe ne correspondent pas."
   },
 
-  "loading": "Loading...",
-  "update_profile": "Update Profile",
-  "profile": {
-    "noTokenError": "No authentication token found. Please log in.",
-    "fetchError": "Failed to fetch profile data.",
-    "updateSuccess": "Profile updated successfully.",
-    "updateError": "Failed to update profile. Please try again.",
-    "my_profile": "My Profile"
+  "Email": "Email",
+  "specializedIn": "Spécialisé en",
+  "years_of_experience": "Années d'expérience",
+  "working_days": {
+    "edit": "Modifier les jours de travail",
+    "day": "Jour"
   },
-  "username": "Username",
-  "first_name": "First Name",
-  "last_name": "Last Name",
-  "email": "Email",
-  "phone_number": "Phone Number",
-  "state": "State",
-  "city": "City",
-  "street": "Street",
-  "spoken_languages": "Spoken Languages"
+  "day_of_week": "Jour de la semaine",
+  "daily_appointment_limit": "Limite quotidienne de rendez-vous",
+  "start_time": "Heure de début",
+  "end_time": "Heure de fin",
+  "submit": "Soumettre",
+  "working_days_list": {
+    "title": "Liste des jours de travail",
+    "add_button": "Ajouter un jour de travail",
+    "day_of_week": "Jour de la semaine",
+    "daily_limit": "Limite quotidienne",
+    "start_time": "Heure de début",
+    "end_time": "Heure de fin",
+    "actions": "Actions",
+    "edit_button": "Modifier",
+    "remove_button": "Supprimer",
+    "no_token_error": "Erreur : aucun jeton d'authentification trouvé.",
+    "fetch_error": "Erreur lors de la récupération des jours de travail."
+  },
+  "add_working_day": {
+    "title": "Ajouter un jour de travail",
+    "day_of_week": "Jour de la semaine",
+    "select_day": "Sélectionner un jour",
+    "daily_limit": "Limite quotidienne de rendez-vous",
+    "start_time": "Heure de début",
+    "end_time": "Heure de fin",
+    "submit": "Ajouter un jour de travail",
+    "adding": "Ajout en cours...",
+    "error": "Erreur lors de l'ajout du jour de travail."
+  },
+  "days": {
+    "monday": "Lundi",
+    "tuesday": "Mardi",
+    "wednesday": "Mercredi",
+    "thursday": "Jeudi",
+    "friday": "Vendredi",
+    "saturday": "Samedi",
+    "sunday": "Dimanche"
+  },
+  "doctor_appointments": "Rendez-vous du médecin",
+  "show_date_picker": "Afficher le sélecteur de date",
+  "hide_date_picker": "Masquer le sélecteur de date",
+  "select_a_date": "Sélectionnez une date",
+  "no_appointments_for_this_date": "Aucun rendez-vous pour cette date.",
+  "failed_to_update_status": "Échec de la mise à jour du statut du rendez-vous.",
+  "patient_name": "Nom du patient",
+  "phone": "Téléphone",
+  "date": "Date",
+  "reason": "Raison",
+  "status": "Statut",
+  "type": "Type",
+  "actions": "Actions",
+  "no_reason_provided": "Aucune raison fournie",
+  "pending": "En attente",
+  "completed": "Terminé",
+  "cancelled": "Annulé",
+  "select_a_date_in_calendar": "Sélectionnez une date dans le calendrier.",
+  "patient_appointments": "Rendez-vous des patients",
+  "doctor_name": "Nom du médecin",
+  "appointment_date": "Date du rendez-vous",
+  "doctor_specialization": "Spécialisation du médecin",
+  "no_reason": "Aucune raison fournie",
+  "no_appointments": "Aucun rendez-vous trouvé.",
+  "Annuler": "Annuler",
+  "failed_to_remove_appointment": "Échec de la suppression du rendez-vous.",
+  "searchPage": {
+    "allDoctors": "Tous les médecins",
+    "noDoctorsFound": "Aucun médecin trouvé correspondant à vos critères."
+  },
+  "rating": {
+    "title": "Évaluez ce médecin :",
+    "yourRating": "Votre note",
+    "stars": "étoiles"
+  },
+  "Spécialité": "Spécialité",
+  "Localization": "Localisation",
+  "Type d'assurance": "Type d'assurance",
+  "Disponibilité": "Disponibilité",
+  "Search": "Rechercher"
 }

@@ -36,7 +36,7 @@ const PatientAppointment = ({ t }) => {
                 console.log(response.data)
             } catch (err) {
                 console.log(err.response.data.detail);
-                setError(err.response.data.detail || 'No appointments.');
+                setError(t(err.response.data.detail || 'no_appointments'));
                 setAppointments([]); // Clear the list on error
             } finally {
                 setLoading(false);
@@ -78,7 +78,7 @@ const PatientAppointment = ({ t }) => {
             );
         } catch (err) {
             console.log(err);
-            setError('Failed to remove appointment.');
+            setError(t('failed_to_remove_appointment'));
         }
     };
 
@@ -151,7 +151,7 @@ const PatientAppointment = ({ t }) => {
                                                         appointment.status
                                                     )}`}
                                                 >
-                                                    {appointment.status}
+                                                    {t(appointment.status)}
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">

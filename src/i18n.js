@@ -4,17 +4,21 @@ import { initReactI18next } from 'react-i18next';
 
 import fr from "./locales/fr.json";
 import ar from "./locales/ar.json";
+import en from "./locales/en.json";
 
 i18n
   .use(initReactI18next)
   .use(LanguageDetector)
   .init({
     resources: {
-      en: {
+      fr: {
         translation: fr,
       },
       ar: {
         translation: ar,
+      },
+      en: {
+        translation: en,
       },
     },
     // lng: "en", // if you're using a language detector, do not define the lng option

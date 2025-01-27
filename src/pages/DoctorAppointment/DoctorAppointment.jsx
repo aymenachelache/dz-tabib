@@ -47,7 +47,7 @@ const DoctorAppointment = ({ t }) => {
             setAppointments(response.data || []);
         } catch (err) {
             console.log(err);
-            setError('No appointments for this date..');
+            setError(t('no_appointments_for_this_date'));
             setAppointments([]);
         } finally {
             setLoading(false);
@@ -80,7 +80,7 @@ const DoctorAppointment = ({ t }) => {
             }
         } catch (error) {
             console.error("Failed to update status:", error);
-            alert("Failed to update appointment status.");
+            alert(t('failed_to_update_status'));
         }
     };
 
@@ -106,17 +106,17 @@ const DoctorAppointment = ({ t }) => {
             <Header t={t} />
             <div className="p-5 font-sans bg-gray-50 min-h-screen">
                 <div className="max-w-7xl mx-auto">
-                    <h1 className="text-3xl font-bold mb-6 text-gray-800">Doctor's Appointments</h1>
+                    <h1 className="text-3xl font-bold mb-6 text-gray-800">{t('doctor_appointments')}</h1>
                     <div className="relative mb-4">
                         <button
                             onClick={toggleDatePickerVisibility}
                             className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
                         >
-                            {isDatePickerVisible ? "Hide Date Picker" : "Show Date Picker"}
+                            {isDatePickerVisible ? t('hide_date_picker') : t('show_date_picker')}
                         </button>
                         {isDatePickerVisible && (
                             <div className="absolute top-12 bg-white p-6 rounded-lg shadow-lg z-10">
-                                <h2 className="text-xl font-semibold mb-4 text-gray-700">Select a date</h2>
+                                <h2 className="text-xl font-semibold mb-4 text-gray-700">{t('select_a_date')}</h2>
                                 <DatePicker
                                     selected={selectedDate}
                                     onChange={handleDateChange}
@@ -142,13 +142,13 @@ const DoctorAppointment = ({ t }) => {
                             <table className="min-w-full">
                                 <thead className="bg-blue-50">
                                     <tr>
-                                        <th className="px-6 py-4">Patient Name</th>
-                                        <th className="px-6 py-4">Phone</th>
-                                        <th className="px-6 py-4">Date</th>
-                                        <th className="px-6 py-4">Reason</th>
-                                        <th className="px-6 py-4">Status</th>
-                                        <th className="px-6 py-4">Type</th>
-                                        <th className="px-6 py-4">Actions</th>
+                                        <th className="px-6 py-4">{t('patient_name')}</th>
+                                        <th className="px-6 py-4">{t('phone')}</th>
+                                        <th className="px-6 py-4">{t('date')}</th>
+                                        <th className="px-6 py-4">{t('reason')}</th>
+                                        <th className="px-6 py-4">{t('status')}</th>
+                                        <th className="px-6 py-4">{t('type')}</th>
+                                        <th className="px-6 py-4">{t('actions')}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -157,14 +157,14 @@ const DoctorAppointment = ({ t }) => {
                                             <td className="px-6 py-4">{`${appointment.patient_first_name} ${appointment.patient_last_name}`}</td>
                                             <td className="px-6 py-4">{appointment.patient_phone_number}</td>
                                             <td className="px-6 py-4">{appointment.appointment_date}</td>
-                                            <td className="px-6 py-4">{appointment.reason || "No reason provided"}</td>
+                                            <td className="px-6 py-4">{appointment.reason || t('no_reason_provided')}</td>
                                             <td className="px-6 py-4">
                                                 <span
                                                     className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(
                                                         appointment.status
                                                     )}`}
                                                 >
-                                                    {appointment.status}
+                                                    {t(appointment.status)}
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4">{appointment.type}</td>
@@ -176,9 +176,9 @@ const DoctorAppointment = ({ t }) => {
                                                     }
                                                     className="border px-2 py-1 rounded-lg"
                                                 >
-                                                    <option value="pending">Pending</option>
-                                                    <option value="completed">Completed</option>
-                                                    <option value="cancelled">Cancelled</option>
+                                                    <option value="pending">{t('pending')}</option>
+                                                    <option value="completed">{t('completed')}</option>
+                                                    <option value="cancelled">{t('cancelled')}</option>
                                                 </select>
                                             </td>
                                         </tr>
@@ -187,7 +187,7 @@ const DoctorAppointment = ({ t }) => {
                             </table>
                         </div>
                     ) : (
-                        <p className="text-gray-600 text-center py-8">Sélectionnez une date dans l'agenda.</p>
+                        <p className="text-gray-600 text-center py-8">{t('select_a_date_in_calendar')}</p>
                     )}
                 </div>
             </div>

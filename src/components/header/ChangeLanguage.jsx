@@ -13,6 +13,7 @@ const ChangeLanguage = () => {
         <div>
             <button className='font-bold' onClick={() => handleLanguageChange('fr')}>FR</button>/
             <button className='font-bold' onClick={() => handleLanguageChange('ar')}>AR</button>
+            <button className='font-bold' onClick={() => handleLanguageChange('en')}>EN</button>
         </div>
     );
 };

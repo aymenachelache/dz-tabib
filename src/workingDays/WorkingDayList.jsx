@@ -18,7 +18,7 @@ export const WorkingDaysList = ({ t }) => {
     const fetchWorkingDays = async () => {
       const token = Cookies.get("authToken");
       if (!token) {
-        setError("Token not found.");
+        setError(t("working_days_list.no_token_error"));
         setLoading(false);
         return;
       }
@@ -30,25 +30,26 @@ export const WorkingDaysList = ({ t }) => {
           },
         });
         setWorkingDays(response.data);
-        console.log(response.data)
+        console.log(response.data);
       } catch (err) {
-        console.log(err)
-        setError("Error fetching working days.");
+        console.log(err);
+        setError(t("working_days_list.fetch_error"));
       } finally {
         setLoading(false);
       }
     };
 
     fetchWorkingDays();
-  }, []);
+  }, [id, t]);
 
   const handleEdit = (id) => {
-    navigate(`/editwokringdays/${id}`);
+    navigate(`/editworkingdays/${id}`);
   };
-  const handleRemove = async (id,index) => {
+
+  const handleRemove = async (id, index) => {
     try {
       const token = Cookies.get("authToken"); // Fetch token from cookies
-      
+
       // API call to delete the working day by its ID
       await axios.delete(`${import.meta.env.VITE_API_URL}/working-days/${id}`, {
         headers: {
@@ -58,15 +59,15 @@ export const WorkingDaysList = ({ t }) => {
 
       // If successful, remove it from the state
       setWorkingDays((prevWorkingDays) =>
-          prevWorkingDays.filter((_, i) => i !== index)
+        prevWorkingDays.filter((_, i) => i !== index)
       );
-  } catch (error) {
+    } catch (error) {
       console.error("Error removing working day:", error);
-  }
+    }
   };
 
   if (loading) {
-    return <div className="text-center py-8">Loading...</div>;
+    return <div className="text-center py-8">{t("loading")}</div>;
   }
 
   return (
@@ -75,42 +76,62 @@ export const WorkingDaysList = ({ t }) => {
       <div className="container mx-auto p-8">
         <div className="my-3 flex flex-col justify-between items-center md:flex-row">
           <h1 className="text-4xl font-semibold mb-6 text-center text-gray-800">
-            Working Days List
+            {t("working_days_list.title")}
           </h1>
           <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-            <Link to={`/addworkingday/${id}`}><p className="cursor-pointer hover:text-black">Add Working Day</p></Link>
+            <Link to={`/addworkingday/${id}`}>
+              <p className="cursor-pointer hover:text-black">
+                {t("working_days_list.add_button")}
+              </p>
+            </Link>
           </button>
         </div>
         <div className="overflow-x-auto">
           <table className="min-w-full table-auto border-collapse bg-white shadow-md rounded-lg">
             <thead>
               <tr className="bg-primary text-white">
-                <th className="border px-6 py-3 text-left">Day of the Week</th>
-                <th className="border px-6 py-3 text-left">Daily Appointment Limit</th>
-                <th className="border px-6 py-3 text-left">Start Time</th>
-                <th className="border px-6 py-3 text-left">End Time</th>
-                <th className="border px-6 py-3 text-left">Actions</th>
+                <th className="border px-6 py-3 text-left">
+                  {t("working_days_list.day_of_week")}
+                </th>
+                <th className="border px-6 py-3 text-left">
+                  {t("working_days_list.daily_limit")}
+                </th>
+                <th className="border px-6 py-3 text-left">
+                  {t("working_days_list.start_time")}
+                </th>
+                <th className="border px-6 py-3 text-left">
+                  {t("working_days_list.end_time")}
+                </th>
+                <th className="border px-6 py-3 text-left">
+                  {t("working_days_list.actions")}
+                </th>
               </tr>
             </thead>
             <tbody>
               {workingDays.map((day, index) => (
                 <tr key={index} className="hover:bg-gray-100">
                   <td className="border px-6 py-4 text-left">{day.day_of_week}</td>
-                  <td className="border px-6 py-4 text-left">{day.daily_appointment_limit}</td>
-                  <td className="border px-6 py-4 text-left">{day.hours[0].start_time}</td>
-                  <td className="border px-6 py-4 text-left">{day.hours[0].end_time}</td>
-                  <td className="flex gap-1  justify-center items-center border px-6 py-4 text-left">
+                  <td className="border px-6 py-4 text-left">
+                    {day.daily_appointment_limit}
+                  </td>
+                  <td className="border px-6 py-4 text-left">
+                    {day.hours[0].start_time}
+                  </td>
+                  <td className="border px-6 py-4 text-left">
+                    {day.hours[0].end_time}
+                  </td>
+                  <td className="flex gap-1 justify-center items-center border px-6 py-4 text-left">
                     <button
                       onClick={() => handleEdit(day.day_id)}
                       className="text-blue-500 hover:text-white px-4 py-2 rounded-lg border border-blue-500 hover:bg-primary transition-all duration-300"
                     >
-                      Edit
+                      {t("working_days_list.edit_button")}
                     </button>
                     <button
-                      onClick={() => handleRemove(day.day_id,index)}
+                      onClick={() => handleRemove(day.day_id, index)}
                       className="text-red-500 hover:text-white px-2 py-2 rounded-lg border border-red-500 hover:bg-red-600 transition-all duration-300"
                     >
-                      Remove
+                      {t("working_days_list.remove_button")}
                     </button>
                   </td>
                 </tr>

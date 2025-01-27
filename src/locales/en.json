@@ -9,44 +9,63 @@
       "Press": "Press"
     },
     "Search": {
-      "SearchBy": "Search by",
-      "Speciality": "Specialty",
+      "SearchBy": "Search By",
+      "Speciality": "Speciality",
       "Area": "Area",
       "Insurance": "Insurance",
       "Hospital": "Hospital",
       "Center": "Center"
     },
     "Doctor": {
-      "AreYouADoctor": "Are you a doctor?",
+      "AreYouADoctor": "Are You a Doctor?",
       "JoinVezeetaDoctors": "Join Dz-tabib Doctors"
     },
     "Help": {
-      "NeedHelp": "Need help?",
+      "NeedHelp": "Need Help?",
       "MedicalLibrary": "Medical Library",
       "ContactUs": "Contact Us",
       "TermsOfUse": "Terms of Use",
       "PrivacyPolicy": "Privacy Policy",
-      "DoctorsPrivacyPolicy": "Doctors' Privacy Policy"
+      "DoctorsPrivacyPolicy": "Doctors Privacy Policy"
     },
     "Security": "Security",
-    "AllRightsReserved": "All rights reserved"
+    "AllRightsReserved": "All Rights Reserved"
   },
   "Header": {
     "Login": "Login",
     "SignUp": "Sign Up",
-    "HomePage": "Home Page"
+    "HomePage": "Home"
   },
   "HomePage": {
     "hero": {
-      "title": "Better health for a better life",
-      "reservation": "Book an appointment online"
+      "title": "Better Health for a Better Life",
+      "reservation": "Book an Appointment Online"
     },
     "home": {
       "AllDoctors": "All Doctors",
       "SeeMore": "See More",
       "ViewProfile": "View Profile",
       "BookAppointment": "Book Appointment",
-      "AllSpecialties": "All Specialties"
+      "AllSpecialties": "All Specialties",
+      "aboutPlatform": {
+        "title": "About Dz-Tabib®",
+        "description": "Dz-Tabib® is a hub for your health journey. We connect qualified doctors to all citizens, whether they live in the city, countryside, or medical deserts. Our platform provides all the resources, not only for booking appointments but also for organizing comprehensive medical care."
+      }
+    },
+    "Teleconsultation": {
+      "Title": "Teleconsultation",
+      "Description1": "Consult your doctor",
+      "Description11": "from home.",
+      "Description2": "Consult your doctor remotely.",
+      "Description3": "Share your documents with your practitioner.",
+      "Description4": "Benefit from a quick consultation, increasing your comfort.",
+      "Description5": "Use it to renew prescriptions or for a review of test results."
+    },
+    "FollowUs": {
+      "Title": "Follow Us",
+      "Description1": "Follow us on our social networks",
+      "Description2": "Join us to follow our tips, tricks, and updates! Special guests will also be present through live streams and our web series: ",
+      "Description3": "صحتي مع بصحة"
     }
   },
   "Specialities": {
@@ -73,13 +92,220 @@
     "Urology": "Urology"
   },
   "Authentification": {
-    "Title": "Sign in to your account",
+    "Title": "Log in to Your Account",
+    "userName": "Username",
+    "firstName": "First Name",
+    "lastName": "Last Name",
     "EmailAddress": "Email Address",
     "Password": "Password",
-    "Forget": "Forgot password?",
-    "NotAMember": "Not a member yet?",
-    "CreateAccount": "Create your free account",
+    "Forget": "Forgot Password?",
+    "NotAMember": "Not a Member?",
+    "CreateAccount": "Create Your Free Account",
     "ResetPassword": "Reset Password",
-    "AlreadyHaveAccount": "Already have an account?"
-  }
+    "AlreadyHaveAccount": "Already Have an Account?",
+    "ResetPasswordTitle": "Reset Your Password",
+    "NewPassword": "New Password",
+    "ConfirmPassword": "Confirm Password"
+  },
+  "doctorCard": {
+    "doctor": "Doctor",
+    "specializedIn": "Specialized in:",
+    "location": "📍 Location:",
+    "fees": "💰 Fees:",
+    "waitingTime": "⏱️ Waiting Time:",
+    "phone": "📞 Phone:",
+    "availability": {
+      "today": "Today",
+      "tomorrow": "Tomorrow",
+      "other": "Thu 21/11"
+    }
+  },
+  "booking": {
+    "title": "Booking Information",
+    "chooseDate": "Choose a Date",
+    "chooseTime": "Choose a Time",
+    "appointmentDetails": "Appointment Details",
+    "confirmBooking": "Confirm Booking",
+    "bookingSuccess": "Booking Successful",
+    "bookingFailed": "Booking Failed",
+    "doctorName": "Doctor Name",
+    "specialty": "Specialty",
+    "location": "Location",
+    "availability": "Availability",
+    "patientDetails": "Patient Details",
+    "fullName": "Full Name",
+    "phoneNumber": "Phone Number",
+    "email": "Email Address",
+    "notes": "Notes (optional)",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "back": "Back",
+    "teleconsultation": "Teleconsultation",
+    "book": "Book"
+  },
+  "aboutDoctor": {
+    "title": "About the Doctor",
+    "bio": "Biography",
+    "experience": "Experience",
+    "education": "Education",
+    "languagesSpoken": "Languages Spoken",
+    "specialties": "Specialties",
+    "consultationFee": "Consultation Fee",
+    "availability": "Availability",
+    "contact": "Contact",
+    "bookAppointment": "Book Appointment",
+    "reviews": "Reviews",
+    "ratings": "Ratings",
+    "doctor": "Dr.",
+    "location": "Address",
+    "phone": "Phone"
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "pages": ["1", "2", "3", "4", "5"]
+  },
+  "header": {
+    "allSpecialities": "All Specialities"
+  },
+  "appointmentPage": {
+    "form": {
+      "title": "Enter Your Information",
+      "patientNameLabel": "Patient Name (who is consulting the doctor)",
+      "patientNamePlaceholder": "Enter the patient's name",
+      "mobileNumberLabel": "Phone Number",
+      "mobileNumberPlaceholder": "Enter the phone number",
+      "optionnel": "(optional)",
+      "emailPlaceholder": "Enter the email address",
+      "Reason": "Reason",
+      "Enter_Reason": "Enter the reason for your appointment",
+      "appointmentTypeLabel": "Appointment Type"
+    },
+    "buttons": {
+      "book": "Book",
+      "cancel": "Cancel"
+    }
+  },
+  "update_profile": "Update Profile",
+  "profile": {
+    "edit_profile": "Edit Profile",
+    "update": "Update",
+    "fetchError": "Error fetching profile",
+    "updateSuccess": "Profile updated successfully.",
+    "updateError": "Failed to update profile. Please try again.",
+    "my_profile": "My Profile",
+    "noTokenError": "No authentication token found. Please log in."
+  },
+  "username": "Username",
+  "first_name": "First Name",
+  "last_name": "Last Name",
+  "email": "Email",
+  "phone_number": "Phone Number",
+  "experience_start_date": "Experience Start Date",
+  "state": "State",
+  "city": "City",
+  "street": "Street",
+  "spoken_languages": "Spoken Languages",
+  "zoom_link": "Zoom Link",
+  "visit_price": "Visit Price",
+  "specialization_id": "Specialization",
+  "latitude": "Latitude",
+  "longitude": "Longitude",
+  "select_state": "Select a State",
+  "select_languages": "Select Languages",
+  "loading": "Loading...",
+  "Errors": {
+    "UnknownError": "An unknown error occurred",
+    "RequiredFirstName": "First name is required.",
+    "RequiredLastName": "Last name is required.",
+    "RequiredUsername": "Username is required.",
+    "RequiredEmail": "Email address is required.",
+    "RequiredPassword": "Password is required.",
+    "PasswordMismatch": "Passwords do not match."
+  },
+  "Email": "Email",
+  "specializedIn": "Specialized in",
+  "years_of_experience": "Years of Experience",
+  "working_days": {
+    "edit": "Edit Working Days",
+    "day": "Day"
+  },
+  "day_of_week": "Day of the Week",
+  "daily_appointment_limit": "Daily Appointment Limit",
+  "start_time": "Start Time",
+  "end_time": "End Time",
+  "submit": "Submit",
+  "working_days_list": {
+    "title": "Working Days List",
+    "add_button": "Add Working Day",
+    "day_of_week": "Day of the Week",
+    "daily_limit": "Daily Limit",
+    "start_time": "Start Time",
+    "end_time": "End Time",
+    "actions": "Actions",
+    "edit_button": "Edit",
+    "remove_button": "Remove",
+    "no_token_error": "Error: No authentication token found.",
+    "fetch_error": "Error fetching working days."
+  },
+  "add_working_day": {
+    "title": "Add Working Day",
+    "day_of_week": "Day of the Week",
+    "select_day": "Select a Day",
+    "daily_limit": "Daily Appointment Limit",
+    "start_time": "Start Time",
+    "end_time": "End Time",
+    "submit": "Add Working Day",
+    "adding": "Adding...",
+    "error": "Error adding working day."
+  },
+  "days": {
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday"
+  },
+  "doctor_appointments": "Doctor Appointments",
+  "show_date_picker": "Show Date Picker",
+  "hide_date_picker": "Hide Date Picker",
+  "select_a_date": "Select a Date",
+  "no_appointments_for_this_date": "No appointments for this date.",
+  "failed_to_update_status": "Failed to update appointment status.",
+  "patient_name": "Patient Name",
+  "phone": "Phone",
+  "date": "Date",
+  "reason": "Reason",
+  "status": "Status",
+  "type": "Type",
+  "actions": "Actions",
+  "no_reason_provided": "No reason provided",
+  "pending": "Pending",
+  "completed": "Completed",
+  "cancelled": "Cancelled",
+  "select_a_date_in_calendar": "Select a date in the calendar.",
+  "patient_appointments": "Patient Appointments",
+  "doctor_name": "Doctor Name",
+  "appointment_date": "Appointment Date",
+  "doctor_specialization": "Doctor Specialization",
+  "no_reason": "No reason provided",
+  "no_appointments": "No appointments found.",
+  "Annuler": "Cancel",
+  "failed_to_remove_appointment": "Failed to remove appointment.",
+  "searchPage": {
+    "allDoctors": "All Doctors",
+    "noDoctorsFound": "No doctors found matching your criteria."
+  },
+  "rating": {
+    "title": "Rate this Doctor:",
+    "yourRating": "Your Rating",
+    "stars": "stars"
+  },
+  "Spécialité": "Speciality",
+  "Localization": "Location",
+  "Type d'assurance": "Insurance Type",
+  "Disponibilité": "Availability",
+  "Search": "Search"
 }
