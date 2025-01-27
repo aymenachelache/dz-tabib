@@ -130,7 +130,7 @@ export const HomePage = ({ t }) => {
                                         Home
                                     </a>
                                 </li>
-                                {specialties.map((specialty, index) => (
+                                {specialties.slice(0,6).map((specialty, index) => (
                                     <li key={index} value={specialty.name} className="max-lg:border-b max-lg:py-3">
                                         <Link
                                             to={`/search?specialite=${specialty.name}&localization=&assurance=&disponibilite=`}
