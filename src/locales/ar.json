@@ -34,7 +34,10 @@
   "Header": {
     "Login": "تسجيل الدخول",
     "SignUp": "التسجيل",
-    "HomePage": "الصفحة الرئيسية"
+    "HomePage": "الصفحة الرئيسية",
+    "Profile": "الملف الشخصي",
+    "EditProfile": "تعديل الملف الشخصي",
+    "LogOut": "تسجيل الخروج"
   },
   "HomePage": {
     "hero": {

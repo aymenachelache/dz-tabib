@@ -2,31 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";  // Import useLocation for query params
 import axios from "axios";
 
-// Translation dictionary (example)
-const translations = {
-  en: {
-    "Spécialité": "Specialty",
-    "Localization": "Location",
-    "Type d'assurance": "Insurance Type",
-    "Disponibilité": "Availability",
-    "Search": "Search",
-  },
-  fr: {
-    "Spécialité": "Spécialité",
-    "Localization": "Localisation",
-    "Type d'assurance": "Type d'assurance",
-    "Disponibilité": "Disponibilité",
-    "Search": "Rechercher",
-  },
-};
-
-// Translation function
-const t = (text) => {
-  const language = "fr"; // Default language (can be dynamically set)
-  return translations[language][text] || text;
-};
-
 export const SearchBar = ({ setResults }) => {
+  const [name, setName] = useState("");
   const [specialite, setSpecialite] = useState("");
   const [localization, setLocalization] = useState("");
   const [assurance, setassurance] = useState("");
@@ -74,6 +51,7 @@ export const SearchBar = ({ setResults }) => {
   const queryParams = new URLSearchParams(location.search);
 
   useEffect(() => {
+    setName(queryParams.get("name") || "");
     setSpecialite(queryParams.get("specialite") || "");
     setLocalization(queryParams.get("localization") || "");
     setassurance(queryParams.get("assurance") || "");
@@ -85,6 +63,7 @@ export const SearchBar = ({ setResults }) => {
 
   const handleSearch = () => {
     const queryParams = new URLSearchParams({
+      name,
       specialite,
       localization,
       assurance,
@@ -109,6 +88,18 @@ export const SearchBar = ({ setResults }) => {
 
   return (
     <div className="flex items-center gap-4">
+      {/* Name Input */}
+      <div className="w-72">
+        <input
+          type="text"
+          name="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Name"
+          className="w-full h-10 border-2 border-sky-500 focus:outline-none focus:border-sky-500 text-sky-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider"
+        />
+      </div>
+
       {/* Spécialité Dropdown */}
       <div className="w-72">
         <select
@@ -117,7 +108,7 @@ export const SearchBar = ({ setResults }) => {
           onChange={handleSelectChange}
           className="w-full h-10 border-2 border-sky-500 focus:outline-none focus:border-sky-500 text-sky-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider"
         >
-          <option value="">{t("Spécialité")}</option>
+          <option value="">Spécialité</option>
           {specialities.map((speciality, index) => (
             <option key={index} value={speciality}>
               {speciality}
@@ -134,7 +125,7 @@ export const SearchBar = ({ setResults }) => {
           onChange={handleSelectChange}
           className="w-full h-10 border-2 border-sky-500 focus:outline-none focus:border-sky-500 text-sky-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider"
         >
-          <option value="">{t("Localization")}</option>
+          <option value="">Localization</option>
           {localizationsAlgerie.map((localization, index) => (
             <option key={index} value={localization}>
               {localization}
@@ -151,7 +142,7 @@ export const SearchBar = ({ setResults }) => {
           onChange={handleSelectChange}
           className="w-full h-10 border-2 border-sky-500 focus:outline-none focus:border-sky-500 text-sky-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider"
         >
-          <option value="">{t("Type d'assurance")}</option>
+          <option value="">Type d'assurance</option>
           {assurances.map((assurance, index) => (
             <option key={index} value={assurance}>
               {assurance}
@@ -168,7 +159,7 @@ export const SearchBar = ({ setResults }) => {
           onChange={handleSelectChange}
           className="w-full h-10 border-2 border-sky-500 focus:outline-none focus:border-sky-500 text-sky-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider"
         >
-          <option value="">{t("Disponibilité")}</option>
+          <option value="">Disponibilité</option>
           {daysOfWeek.map((day, index) => (
             <option key={index} value={day}>
               {day}
@@ -183,7 +174,7 @@ export const SearchBar = ({ setResults }) => {
           onClick={handleSearch}
           className="w-full h-10 border-2 bg-sky-500 border-sky-500 focus:outline-none focus:border-sky-500 text-white rounded px-2 md:px-3 py-0 md:py-1 tracking-wider"
         >
-          {t("Search")}
+          Search
         </button>
       </div>
     </div>

@@ -34,7 +34,10 @@
   "Header": {
     "Login": "Login",
     "SignUp": "Sign Up",
-    "HomePage": "Home"
+    "HomePage": "Home",
+    "Profile": "Profile",
+    "EditProfile": "Edit Profile",
+    "LogOut": "Log Out"
   },
   "HomePage": {
     "hero": {

@@ -79,9 +79,9 @@ export const MyProfile = ({ t }) => {
 
 
   if (!profile) {
-    return (
-      Cookies.remove("authToken")
-    );
+    Cookies.remove("authToken");
+    navigate("/login");
+    return null;
   }
 
   return (

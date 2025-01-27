@@ -34,7 +34,10 @@
   "Header": {
     "Login": "Se connecter",
     "SignUp": "S'inscrire",
-    "HomePage": "Accueil"
+    "HomePage": "Accueil",
+    "Profile": "Profil",
+    "EditProfile": "Modifier le Profil",
+    "LogOut": "Déconnexion"
   },
   "HomePage": {
     "hero": {
@@ -180,7 +183,6 @@
       "Reason": "Raison",
       "Enter_Reason": "Entrez la raison de votre rendez-vous",
       "appointmentTypeLabel": "Type de rendez-vous"
-
     },
     "buttons": {
       "book": "Réserver",
