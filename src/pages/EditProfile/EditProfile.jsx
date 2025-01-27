@@ -24,11 +24,9 @@ export const EditProfile = ({ t }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${import.meta.env.VITE_API_URL}/adv_search`);  // Replace with actual backend API endpoint
-                const { assurances } = response.data;
-                setAssurances(Object.values(assurances));
-                console.log(response.data)
-                console.log(response.data)
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/assurances`);
+                console.log(response.data); // Log the fetched assurances
+                setAssurances(response.data); // Set assurances directly from the response
             } catch (error) {
                 console.error("Error fetching assurances:", error);
             }
@@ -103,6 +101,15 @@ export const EditProfile = ({ t }) => {
         }));
     };
 
+    const handleAssuranceChange = (selectedOptions) => {
+        const selectedAssurances = selectedOptions.map((option) => ({
+            assurance_id: option.value,
+        }));
+        setProfile((prevProfile) => ({
+            ...prevProfile,
+            assurances: selectedAssurances,
+        }));
+    };
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -186,7 +193,7 @@ export const EditProfile = ({ t }) => {
             street: profile.street || "",
             assurances: profile.assurances || [],
             zoom_link: profile.zoom_link || "",
-            visit_price: profile.visit_price || 0,
+            visit_price: parseFloat(profile.visit_price) || 0,
             phone_number: profile.phone_number || "",
             specialization_id: profile.specialization_id || 1,
             photo: profile.photo || "",
@@ -194,11 +201,11 @@ export const EditProfile = ({ t }) => {
     };
 
     const handleSubmit = async (e) => {
-        console.log(profile)
+        console.log(profile);
         e.preventDefault();
         setLoading(true);
         const token = Cookies.get("authToken");
-
+        console.log(preparePayload(profile));
         try {
             const res = await axios.put(`${import.meta.env.VITE_API_URL}/profile`, preparePayload(profile), {
                 headers: {
@@ -216,8 +223,8 @@ export const EditProfile = ({ t }) => {
 
     if (loading) {
         return (
-            <div className="text-center py-10">
-                <p>{t("loading")}</p>
+            <div className="w-full h-screen flex justify-center items-center">
+                <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-opacity-75"></div>
             </div>
         );
     }
@@ -365,7 +372,7 @@ export const EditProfile = ({ t }) => {
                                         <input
                                             type="number"
                                             name="visit_price"
-                                            value={profile.visit_price || 0}
+                                            value={profile.visit_price}
                                             onChange={handleChange}
                                             className="block w-full border-0 rounded-lg p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm/6 outline-none"
                                         />
@@ -385,6 +392,23 @@ export const EditProfile = ({ t }) => {
                                                 </option>
                                             ))}
                                         </select>
+                                    </label>
+                                    <label className="block">
+                                        <span className="text-gray-700">{t("assurances")}</span>
+                                        <Select
+                                            isMulti
+                                            options={assurances.map((assurance) => ({
+                                                value: assurance.id,
+                                                label: assurance.name,
+                                            }))}
+                                            value={profile.assurances.map((assurance) => {
+                                                const matchingAssurance = assurances.find((a) => a.id === assurance.assurance_id);
+                                                return matchingAssurance ? { value: matchingAssurance.id, label: matchingAssurance.name } : null;
+                                            }).filter(Boolean)} // Filter out nulls
+                                            onChange={handleAssuranceChange}
+                                            className="block w-full border-0 rounded-lg p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm/6 outline-none"
+                                            placeholder={t("select_assurances")}
+                                        />
                                     </label>
                                     <label className="block">
                                         <span className="text-gray-700">{t("latitude")}</span>

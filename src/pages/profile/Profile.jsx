@@ -51,10 +51,12 @@ export const MyProfile = ({ t }) => {
           const latitude = doctorResponse?.data?.latitude || 0;
           const longitude = doctorResponse?.data?.longitude || 0;
           setPosition([latitude, longitude]);
+
         } else {
           setProfile(userProfile);
         }
 
+        console.log(profile)
       } catch (err) {
         setError(t("profile.fetchError"));
         console.log(err)
@@ -70,8 +72,8 @@ export const MyProfile = ({ t }) => {
 
   if (loading) {
     return (
-      <div className="text-center py-10">
-        <p>{t("loading")}</p>
+      <div className="w-full h-screen flex justify-center items-center">
+            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-opacity-75"></div>
       </div>
     );
   }
@@ -80,8 +82,8 @@ export const MyProfile = ({ t }) => {
 
   if (!profile) {
     Cookies.remove("authToken");
-    navigate("/login");
-    return null;
+    navigate("/login"); 
+    return null; 
   }
 
   return (
@@ -133,6 +135,9 @@ export const MyProfile = ({ t }) => {
                     </p>
                     <p className="my-1">
                       <strong>{t("spoken_languages")}:</strong> {profile.spoken_languages}
+                    </p>
+                    <p className="my-1">
+                      <strong>{t("Assurances")}:</strong> {profile.assurances.map((as,idx) => <span>{as}, </span>)}
                     </p>
                     <p className="my-1">
                       <strong>{t("years_of_experience")}:</strong> {profile.years_of_experience}
