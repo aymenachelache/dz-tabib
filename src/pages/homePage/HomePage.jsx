@@ -132,12 +132,12 @@ export const HomePage = ({ t }) => {
                                 </li>
                                 {specialties.map((specialty, index) => (
                                     <li key={index} value={specialty.name} className="max-lg:border-b max-lg:py-3">
-                                        <a
-                                            href="#"
+                                        <Link
+                                            to={`/search?specialite=${specialty.name}&localization=&assurance=&disponibilite=`}
                                             className="hover:text-[#007bff] text-gray-500 font-bold text-[15px] block text-nowrap"
                                         >
                                             {specialty.name}
-                                        </a>
+                                        </Link>
                                     </li>
                                 ))}
 
