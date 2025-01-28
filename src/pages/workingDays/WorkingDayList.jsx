@@ -3,8 +3,8 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Header } from "../components/header/Header";
-import { Footer } from "../components/footer/Footer";
+import { Header } from "../../components/header/Header";
+import { Footer } from "../../components/footer/Footer";
 
 export const WorkingDaysList = ({ t }) => {
   const [workingDays, setWorkingDays] = useState([]);
@@ -67,7 +67,7 @@ export const WorkingDaysList = ({ t }) => {
   };
 
   if (loading) {
-    return <div className="text-center py-8">{t("loading")}</div>;
+    return <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-opacity-75"></div>;
   }
 
   return (
