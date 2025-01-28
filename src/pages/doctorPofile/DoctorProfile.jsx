@@ -301,13 +301,13 @@ export const DoctorProfile = ({ t }) => {
                                         </div>
                                         {selectedDate && (
                                             <div className='mt-2 flex justify-center items-center'>
-                                                <h3>Date sélectionnée : {selectedDate.toLocaleDateString()}</h3>
+                                                <h3>Date sélectionnée : {selectedDate.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' })}</h3>
                                             </div>
                                         )}
                                     </div>
                                     <div className="w-full !text-center mt-4">
                                         {selectedDate ? (
-                                            <Link to={token ? `/appointment/${id}/${selectedDate?.toLocaleDateString()}/${MappingWokingDayId}` : "/login"}>
+                                            <Link to={token ? `/appointment/${id}/${selectedDate?.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' })}/${MappingWokingDayId}` : "/login"}>
                                                 <button
                                                     className="w-full !text-center text-sm px-4 py-3 rounded-b-md rounded-t-md mb-2 bg-red-500 text-white font-semibold hover:bg-red-600"
                                                 >
