@@ -87,9 +87,9 @@ export const SearchBar = ({ setResults }) => {
   };
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
       {/* Name Input */}
-      <div className="w-72">
+      <div className="col-span-1">
         <input
           type="text"
           name="name"
@@ -101,7 +101,7 @@ export const SearchBar = ({ setResults }) => {
       </div>
 
       {/* Spécialité Dropdown */}
-      <div className="w-72">
+      <div className="col-span-1">
         <select
           name="specialite"
           value={specialite}
@@ -118,7 +118,7 @@ export const SearchBar = ({ setResults }) => {
       </div>
 
       {/* Localization Dropdown */}
-      <div className="w-72">
+      <div className="col-span-1">
         <select
           name="localization"
           value={localization}
@@ -135,7 +135,7 @@ export const SearchBar = ({ setResults }) => {
       </div>
 
       {/* Type d'assurance Dropdown */}
-      <div className="w-72">
+      <div className="col-span-1">
         <select
           name="assurance"
           value={assurance}
@@ -152,7 +152,7 @@ export const SearchBar = ({ setResults }) => {
       </div>
 
       {/* Disponibilité Dropdown */}
-      <div className="w-72">
+      <div className="col-span-1">
         <select
           name="disponibilite"
           value={disponibilite}
@@ -168,7 +168,7 @@ export const SearchBar = ({ setResults }) => {
         </select>
       </div>
 
-      <div className="w-72">
+      <div className="col-span-1">
         <button
           type="button"
           onClick={handleSearch}
