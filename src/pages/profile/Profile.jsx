@@ -93,7 +93,7 @@ export const MyProfile = ({ t }) => {
         <div className="bg-gray-100 min-h-screen p-6">
           <div className="max-w-7xl mx-auto bg-white shadow-lg rounded-lg">
             {/* Doctor Info */}
-            <section className="p-6 flex items-center justify-between gap-6 border-b">
+            <section className="p-6 flex items-center justify-between flex-col lg:flex-row gap-6 border-b">
               <div className="flex items-center gap-6">
                 <div className="w-28 h-28 object-cover bg-gray-200 rounded-full border-2 border-blue-400 overflow-hidden">
                   <img src={profile.photo || doctorImg} alt="DoctorImg" />
@@ -111,8 +111,11 @@ export const MyProfile = ({ t }) => {
                 <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
                   <Link to={`/editprofile`}><p className="cursor-pointer hover:text-black">Edit My Profile</p></Link>
                 </button>
+                {profile.is_doctor && <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+                  <Link to={`/appointments`}><p className="cursor-pointer hover:text-black">Doctor Appointments</p></Link>
+                </button>}
                 <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-                  <Link to={`${profile.is_doctor ? "/appointments" : "/myappointments"}`}><p className="cursor-pointer hover:text-black">{profile.is_doctor ? "Appointments" : "My Appointents"}</p></Link>
+                  <Link to={`/myappointments`}><p className="cursor-pointer hover:text-black">My Appointents</p></Link>
                 </button>
               </div>
             </section>
