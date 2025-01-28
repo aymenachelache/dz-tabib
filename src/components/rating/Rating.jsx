@@ -2,13 +2,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 
-export const Rating = ({ idDoctor, t, onRatingSuccess }) => {
+export const Rating = ({ idDoctor, t }) => {
   const [rating, setRating] = useState(0); // Current rating
   const [lastRating, setLastRating] = useState(null); // Last rating given by the patient
   const [userId, setUserId] = useState(null);
   const [hoverRating, setHoverRating] = useState(0); // Rating when hovering over stars
   const [successMessage, setSuccessMessage] = useState(null); // Success message state
+  const [errorMessage, setErrorMessage] = useState(null); 
   const token = Cookies.get("authToken");
+
 
   const calculateAverageRating = async (idDoctor) => {
     console.log(`DoctorId : ${idDoctor}`);
@@ -39,6 +41,7 @@ export const Rating = ({ idDoctor, t, onRatingSuccess }) => {
           },
         }
       );
+      console.log(response.data)
       console.log(response.data.reviews[0].note);
       if (response.data && response.data.reviews[0].note) {
         setLastRating(response.data.reviews[0].note);
@@ -46,6 +49,7 @@ export const Rating = ({ idDoctor, t, onRatingSuccess }) => {
       }
     } catch (error) {
       console.error("Error fetching last rating:", error);
+      console.log(error)
     }
   };
 
@@ -80,11 +84,6 @@ export const Rating = ({ idDoctor, t, onRatingSuccess }) => {
         calculateAverageRating(idDoctor);  // Recalculate average rating
         fetchLastRating(userId, idDoctor); // Fetch the last rating again to update the UI
 
-        // Call the onRatingSuccess callback to notify the parent component
-      
-          // onRatingSuccess();
-  
-
         // Clear the success message after 3 seconds
         setTimeout(() => {
           setSuccessMessage(null);
@@ -94,6 +93,8 @@ export const Rating = ({ idDoctor, t, onRatingSuccess }) => {
       }
     } catch (error) {
       console.error("Error updating rating:", error);
+      console.log(error.response.data.detail);
+      setErrorMessage(error.response?.data?.detail)
     }
   };
 
@@ -152,6 +153,9 @@ export const Rating = ({ idDoctor, t, onRatingSuccess }) => {
       </p>
       {successMessage && (
         <p className="mt-4 text-green-600">{successMessage}</p>
+      )}
+      {errorMessage && (
+        <p className="mt-4 text-red-600">{errorMessage}</p>
       )}
     </div>
   );
