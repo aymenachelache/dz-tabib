@@ -140,7 +140,7 @@ export const MyProfile = ({ t }) => {
                       <strong>{t("Assurances")}:</strong> {profile.assurances.map((as,idx) => <span>{as}, </span>)}
                     </p>
                     <p className="my-1">
-                      <strong>{t("years_of_experience")}:</strong> {profile.years_of_experience}
+                      <strong>{t("years_of_experience")}:</strong> {profile.years_of_experience} {t("years")}
                     </p>
                     <p className="my-1">
                       <strong>{t("zoom_link")}:</strong>{" "}

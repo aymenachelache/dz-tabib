@@ -2,10 +2,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 
-export const Rating = ({ idDoctor, t }) => {
+export const Rating = ({ idDoctor, t, onRatingSuccess }) => {
   const [rating, setRating] = useState(0); // Current rating
+  const [lastRating, setLastRating] = useState(null); // Last rating given by the patient
   const [userId, setUserId] = useState(null);
   const [hoverRating, setHoverRating] = useState(0); // Rating when hovering over stars
+  const [successMessage, setSuccessMessage] = useState(null); // Success message state
   const token = Cookies.get("authToken");
 
   const calculateAverageRating = async (idDoctor) => {
@@ -19,6 +21,31 @@ export const Rating = ({ idDoctor, t }) => {
       console.log("Moyenne des évaluations:", response.data);
     } catch (error) {
       console.error("Erreur lors du calcul de la moyenne des évaluations:", error);
+    }
+  };
+
+  // Fetch the last rating given by the patient
+  const fetchLastRating = async (idPatient, idDoctor) => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/evaluate/patient`,
+        {
+          params: {
+            id_patient: idPatient,
+            doctor_id: idDoctor,
+          },
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response.data.reviews[0].note);
+      if (response.data && response.data.reviews[0].note) {
+        setLastRating(response.data.reviews[0].note);
+        setRating(response.data.reviews[0].note); // Set the current rating to the last rating
+      }
+    } catch (error) {
+      console.error("Error fetching last rating:", error);
     }
   };
 
@@ -49,7 +76,19 @@ export const Rating = ({ idDoctor, t }) => {
       // Check if the request was successful
       if (response.status === 200) {
         console.log("Rating updated successfully!");
+        setSuccessMessage(response.data.message); // Set success message
         calculateAverageRating(idDoctor);  // Recalculate average rating
+        fetchLastRating(userId, idDoctor); // Fetch the last rating again to update the UI
+
+        // Call the onRatingSuccess callback to notify the parent component
+      
+          // onRatingSuccess();
+  
+
+        // Clear the success message after 3 seconds
+        setTimeout(() => {
+          setSuccessMessage(null);
+        }, 3000);
       } else {
         console.error("Failed to update rating.");
       }
@@ -68,7 +107,7 @@ export const Rating = ({ idDoctor, t }) => {
     setHoverRating(0);
   };
 
-  // Fetch the user data when the component mounts
+  // Fetch the user data and last rating when the component mounts
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -80,12 +119,13 @@ export const Rating = ({ idDoctor, t }) => {
         });
         setUserId(response.data.id); // Set the user ID
         console.log(`id ${response.data.id}`);
+        fetchLastRating(response.data.id, idDoctor); // Fetch the last rating after setting the user ID
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     };
     fetchData();
-  }, [token]); // Depend on token so it refetches if token changes
+  }, [token, idDoctor]); // Depend on token and idDoctor so it refetches if either changes
 
   return (
     <div className="p-8 !text-center">
@@ -110,6 +150,9 @@ export const Rating = ({ idDoctor, t }) => {
       <p className="mt-4 text-gray-600">
         {t("rating.yourRating")}: {rating} {t("rating.stars")}
       </p>
+      {successMessage && (
+        <p className="mt-4 text-green-600">{successMessage}</p>
+      )}
     </div>
   );
 };
