@@ -75,7 +75,7 @@ export const DoctorProfile = ({ t }) => {
       };
 
     // Map days of the week to their numerical values
-    const allowedDays = workingDays.map((item) => {
+    const allowedDays = workingDays?.map((item) => {
         switch (item.day_of_week) {
             case "Sunday":
                 return 0;
@@ -205,7 +205,7 @@ export const DoctorProfile = ({ t }) => {
                                     <strong>{t("spoken_languages")}:</strong> {profile.spoken_languages}
                                 </p>
                                 <p className="my-1">
-                                    <strong>{t("Assurances")}:</strong> {profile.assurances.map((as, idx) => <span>{as}, </span>)}
+                                    <strong>{t("Assurances")}:</strong> {profile.assurances?.map((as, idx) => <span>{as}, </span>)}
                                 </p>
                                 <p className="my-1">
                                     <strong>{t("years_of_experience")}:</strong> {profile.years_of_experience} {t("years")}
@@ -274,7 +274,7 @@ export const DoctorProfile = ({ t }) => {
                             {/* Appointment Times */}
                             <div className="space-y-4">
                                 <div className="mt-1 !text-center">
-                                    {workingDays.map((el, idx) => (
+                                    {workingDays?.map((el, idx) => (
                                         <div key={idx} className='mb-1 grid grid-cols-4 rounded-t-md rounded-b-md overflow-hidden cursor-pointer'>
                                             <div className="bg-blue-200 hover:bg-blue-300 text-sm px-4 py-3">
                                                 {el.day_of_week}

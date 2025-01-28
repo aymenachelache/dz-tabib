@@ -137,7 +137,7 @@ export const MyProfile = ({ t }) => {
                       <strong>{t("spoken_languages")}:</strong> {profile.spoken_languages}
                     </p>
                     <p className="my-1">
-                      <strong>{t("Assurances")}:</strong> {profile.assurances.map((as,idx) => <span>{as}, </span>)}
+                      <strong>{t("Assurances")}:</strong> {profile.assurances?.map((as,idx) => <span>{as}, </span>)}
                     </p>
                     <p className="my-1">
                       <strong>{t("years_of_experience")}:</strong> {profile.years_of_experience} {t("years")}
