@@ -13,6 +13,20 @@ import './DoctorProfile.css';
 import { Rating } from '../../components/rating/Rating';
 import { Spinner } from './Spinner'; // Ensure this component exists and is properly styled
 
+
+import L from "leaflet";
+import "leaflet/dist/leaflet.css"; // Import Leaflet CSS
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
+
+// Fix default marker icon
+const DefaultIcon = L.icon({
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+});
+
 export const DoctorProfile = ({ t }) => {
     const [profile, setProfile] = useState({});
     const [position, setPosition] = useState([0, 0]);
