@@ -125,12 +125,12 @@ export const WorkingDaysList = ({ t }) => {
                     {day.hours[0].end_time}
                   </td>
                   <td className="flex gap-1 justify-center items-center border px-6 py-4 text-left">
-                    <button
+                    {/* <button
                       onClick={() => handleEdit(day.day_id)}
                       className="text-blue-500 hover:text-white px-4 py-2 rounded-lg border border-blue-500 hover:bg-primary transition-all duration-300"
                     >
                       {t("working_days_list.edit_button")}
-                    </button>
+                    </button> */}
                     <button
                       onClick={() => handleRemove(day.day_id, index)}
                       className="text-red-500 hover:text-white px-2 py-2 rounded-lg border border-red-500 hover:bg-red-600 transition-all duration-300"
