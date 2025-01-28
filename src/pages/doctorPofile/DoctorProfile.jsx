@@ -27,6 +27,8 @@ const DefaultIcon = L.icon({
   iconAnchor: [12, 41],
 });
 
+L.Marker.prototype.options.icon = DefaultIcon;
+
 export const DoctorProfile = ({ t }) => {
     const [profile, setProfile] = useState({});
     const [position, setPosition] = useState([0, 0]);
