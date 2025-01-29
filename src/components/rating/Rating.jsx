@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 export const Rating = ({ idDoctor, t }) => {
   const [rating, setRating] = useState(0); // Current rating
   const [lastRating, setLastRating] = useState(null); // Last rating given by the patient
+  const [comment, setComment] = useState(null); // Last rating given by the patient
   const [userId, setUserId] = useState(null);
   const [hoverRating, setHoverRating] = useState(0); // Rating when hovering over stars
   const [successMessage, setSuccessMessage] = useState(null); // Success message state
@@ -45,6 +46,7 @@ export const Rating = ({ idDoctor, t }) => {
       console.log(response.data.reviews[0].note);
       if (response.data && response.data.reviews[0].note) {
         setLastRating(response.data.reviews[0].note);
+        setComment(response.data.reviews[0].comment);
         setRating(response.data.reviews[0].note); // Set the current rating to the last rating
       }
     } catch (error) {
@@ -62,7 +64,7 @@ export const Rating = ({ idDoctor, t }) => {
       id_doctor: idDoctor, // ID of the doctor being rated
       id_patient: userId,  // ID of the logged-in user
       note: newRating,     // The rating value
-      comment: "",         // Optional comment field (empty for now)
+      comment: comment,         // Optional comment field (empty for now)
     };
 
     try {
@@ -131,7 +133,7 @@ export const Rating = ({ idDoctor, t }) => {
   return (
     <div className="p-8 !text-center">
       <h1 className="text-2xl font-bold mb-4 !text-center">{t("rating.title")}</h1>
-      <div className="flex space-x-1 !text-center">
+      <div className="flex justify-center items-center space-x-1 !text-center">
         {[1, 2, 3, 4, 5].map((star) => (
           <button
             key={star}
@@ -148,9 +150,9 @@ export const Rating = ({ idDoctor, t }) => {
           </button>
         ))}
       </div>
-      <p className="mt-4 text-gray-600">
+      {/* <p className="mt-4 text-gray-600">
         {t("rating.yourRating")}: {rating} {t("rating.stars")}
-      </p>
+      </p> */}
       {successMessage && (
         <p className="mt-4 text-green-600">{successMessage}</p>
       )}

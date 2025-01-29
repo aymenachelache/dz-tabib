@@ -156,7 +156,7 @@ export const Comments = ({ idDoctor, t }) => {
       <h2 className="text-xl font-bold mb-4">Leave a Comment and Rating</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Rating Input */}
-        <div className="flex justify-center">
+        {/* <div className="flex justify-center">
           {[1, 2, 3, 4, 5].map((star) => (
             <button
               type="button"
@@ -173,7 +173,7 @@ export const Comments = ({ idDoctor, t }) => {
               ★
             </button>
           ))}
-        </div>
+        </div> */}
 
         {/* Comment Input */}
         <div>
@@ -208,7 +208,7 @@ export const Comments = ({ idDoctor, t }) => {
       <div className="mt-8">
         <h3 className="text-xl font-bold mb-4">Reviews</h3>
         {reviews.length > 0 ? (
-          reviews.map((review, index) => (
+          reviews.filter((review) => review.comment.trim() !== "").map((review, index) => (
             <div key={index} className="mb-4 p-4 border rounded-lg">
               <div className="flex justify-between items-center">
               <p className="font-semibold">
@@ -216,7 +216,7 @@ export const Comments = ({ idDoctor, t }) => {
               </p>
               <p className="text-yellow-500">Rating: {review.note}</p>
               </div>
-              <p>{review.comment || "No comment"}</p>
+              <p>{review.comment}</p>
             </div>
           ))
         ) : (
