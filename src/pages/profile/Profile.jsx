@@ -15,6 +15,8 @@ export const MyProfile = ({ t }) => {
   const [error, setError] = useState(null);
   const navigate = useNavigate()
   const [position, setPosition] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+
   const onLocationSelect = (lat, lng) => { setProfile((prevProfile) => ({ ...prevProfile, latitude: lat, longitude: lng, })); };
   const LocationMarker = () => {
     useMapEvents({
@@ -24,6 +26,40 @@ export const MyProfile = ({ t }) => {
     });
     return position === null ? null : <Marker position={position} />;
   };
+
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
+  const handleUpload = async () => {
+    if (!selectedFile) {
+      alert("Please select an image first.");
+      return;
+    }
+    const token = Cookies.get("authToken");
+    const formData = new FormData();
+    formData.append("photo", selectedFile);
+    setLoading(true);
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/profile/updload`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      setProfile((prevProfile) => ({ ...prevProfile, photo: response.data.photo }));
+      setLoading(false);
+    } catch (error) {
+      console.log("Error uploading profile picture:", error);
+      setLoading(false)
+    }
+  };
+
+
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -73,7 +109,7 @@ export const MyProfile = ({ t }) => {
   if (loading) {
     return (
       <div className="w-full h-screen flex justify-center items-center">
-            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-opacity-75"></div>
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-opacity-75"></div>
       </div>
     );
   }
@@ -82,8 +118,8 @@ export const MyProfile = ({ t }) => {
 
   if (!profile) {
     Cookies.remove("authToken");
-    navigate("/login"); 
-    return null; 
+    navigate("/login");
+    return null;
   }
 
   return (
@@ -93,7 +129,7 @@ export const MyProfile = ({ t }) => {
         <div className="bg-gray-100 min-h-screen p-6">
           <div className="max-w-7xl mx-auto bg-white shadow-lg rounded-lg">
             {/* Doctor Info */}
-            <section className="p-6 flex items-center justify-between flex-col lg:flex-row gap-6 border-b">
+            <section className="p-6 flex items-center justify-between flex-col xl::flex-row gap-6 border-b">
               <div className="flex items-center gap-6">
                 <div className="w-28 h-28 object-cover bg-gray-200 rounded-full border-2 border-blue-400 overflow-hidden">
                   <img src={profile.photo || doctorImg} alt="DoctorImg" />
@@ -108,14 +144,30 @@ export const MyProfile = ({ t }) => {
                 </div>
               </div>
               <div className="flex gap-5">
+                {!selectedFile ? <div className="bg-blue-500 text-white hover:bg-blue-600 font-semibold py-2 px-4 border border-blue-500 rounded shadow cursor-pointer"><input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                  id="file-upload"
+                  className="hidden"
+                />
+                  <label
+                    htmlFor="file-upload"
+                    className=""
+                  > {t("Select Image")}</label>
+                </div>
+                  : <button onClick={handleUpload} className="bg-blue-500 text-white hover:bg-blue-600 font-semibold py-2 px-4 border border-blue-500 rounded shadow">
+                    {t("Upload Picture")}
+                  </button>}
+
                 <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-                  <Link to={`/editprofile`}><p className="cursor-pointer hover:text-black">Edit My Profile</p></Link>
+                  <Link to={`/editprofile`}><p className="cursor-pointer hover:text-black">{t("Edit My Profile")}</p></Link>
                 </button>
                 {profile.is_doctor && <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-                  <Link to={`/appointments`}><p className="cursor-pointer hover:text-black">Doctor Appointments</p></Link>
+                  <Link to={`/appointments`}><p className="cursor-pointer hover:text-black">{t("Doctor Appointments")}</p></Link>
                 </button>}
                 <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-                  <Link to={`/myappointments`}><p className="cursor-pointer hover:text-black">My Appointents</p></Link>
+                  <Link to={`/myappointments`}><p className="cursor-pointer hover:text-black">{t("My Appointments")}</p></Link>
                 </button>
               </div>
             </section>
@@ -140,7 +192,7 @@ export const MyProfile = ({ t }) => {
                       <strong>{t("spoken_languages")}:</strong> {profile.spoken_languages}
                     </p>
                     <p className="my-1">
-                      <strong>{t("Assurances")}:</strong> {profile.assurances?.map((as,idx) => <span>{as}, </span>)}
+                      <strong>{t("Assurances")}:</strong> {profile.assurances?.map((as, idx) => <span>{as}, </span>)}
                     </p>
                     <p className="my-1">
                       <strong>{t("years_of_experience")}:</strong> {profile.years_of_experience} {t("years")}
@@ -167,7 +219,7 @@ export const MyProfile = ({ t }) => {
                     </p>
                     <p className="my-1">
                       <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-                        <Link to={`/workingdays/${profile.id}`}><p className="cursor-pointer hover:text-black">Working Days</p></Link>
+                        <Link to={`/workingdays/${profile.id}`}><p className="cursor-pointer hover:text-black">{t("Working Days")}</p></Link>
                       </button>
                     </p>
 
@@ -194,7 +246,7 @@ export const MyProfile = ({ t }) => {
               </div>
               {/* Booking Section */}
               <div className="col-span-1 max-md:col-span-3 bg-blue-50 p-6 rounded-lg shadow-md">
-                <h2 className="text-xl font-bold mb-4">Information</h2>
+                <h2 className="text-xl font-bold mb-4">{t("Information")}</h2>
                 <div className="mb-4">
                   {/* Location */}
                   {profile.is_doctor &&
