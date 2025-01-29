@@ -66,8 +66,8 @@ export const Comments = ({ idDoctor, t }) => {
           },
         }
       );
-      setReviews(response.data.reviews);
-      console.log(response)
+      setReviews(response.data.reviews); // Update the reviews state
+      console.log("Reviews fetched:", response.data.reviews);
     } catch (error) {
       console.error("Error fetching reviews:", error);
     }
@@ -102,6 +102,9 @@ export const Comments = ({ idDoctor, t }) => {
         calculateAverageRating(idDoctor);  // Recalculate average rating
         fetchLastRating(userId, idDoctor); // Fetch the last rating and comment again to update the UI
         fetchReviews(idDoctor); // Fetch reviews again to update the UI
+
+        // Clear the comment input after successful submission
+        setComment("");
 
         // Clear the success message after 3 seconds
         setTimeout(() => {
@@ -149,32 +152,12 @@ export const Comments = ({ idDoctor, t }) => {
       }
     };
     fetchData();
-  }, [token, idDoctor]);
+  }, [token, idDoctor]); // Re-fetch data when token or idDoctor changes
 
   return (
     <div className="!text-center">
       <h2 className="text-xl font-bold mb-4">Leave a Comment and Rating</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Rating Input */}
-        {/* <div className="flex justify-center">
-          {[1, 2, 3, 4, 5].map((star) => (
-            <button
-              type="button"
-              key={star}
-              onClick={() => handleClick(star)}
-              onMouseEnter={() => handleMouseEnter(star)}
-              onMouseLeave={handleMouseLeave}
-              className={`text-2xl ${
-                star <= (hoverRating || rating)
-                  ? "text-yellow-500"
-                  : "text-gray-300"
-              }`}
-            >
-              ★
-            </button>
-          ))}
-        </div> */}
-
         {/* Comment Input */}
         <div>
           <textarea
@@ -211,10 +194,10 @@ export const Comments = ({ idDoctor, t }) => {
           reviews.filter((review) => review.comment.trim() !== "").map((review, index) => (
             <div key={index} className="mb-4 p-4 border rounded-lg">
               <div className="flex justify-between items-center">
-              <p className="font-semibold">
-                {review.patient_first_name} {review.patient_last_name}
-              </p>
-              <p className="text-yellow-500">Rating: {review.note}</p>
+                <p className="font-semibold">
+                  {review.patient_first_name} {review.patient_last_name}
+                </p>
+                <p className="text-yellow-500">Rating: {review.note}</p>
               </div>
               <p>{review.comment}</p>
             </div>
