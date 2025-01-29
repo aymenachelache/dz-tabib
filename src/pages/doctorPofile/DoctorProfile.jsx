@@ -18,6 +18,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css"; // Import Leaflet CSS
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
+import { Comments } from '../../components/comments/Comments';
 
 // Fix default marker icon
 const DefaultIcon = L.icon({
@@ -267,6 +268,9 @@ export const DoctorProfile = ({ t }) => {
                             </div>
                             <div className='flex justify-center items-center text-center'>
                                 <Rating idDoctor={profile.id} t={t} onRatingSuccess={handleRatingSuccess} />
+                            </div>
+                            <div className="">
+                                <Comments idDoctor={profile.id} t={t} />
                             </div>
                         </div>
 
