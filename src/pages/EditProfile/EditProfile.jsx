@@ -391,6 +391,7 @@ export const EditProfile = ({ t }) => {
                                             onChange={handleAssuranceChange}
                                             className="border-none p-0 block relative z-[9999] w-full border-0 rounded-lg text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm/6 outline-none"
                                             placeholder={t("select_assurances")}
+                                            required
                                         />
                                     </label>
 
