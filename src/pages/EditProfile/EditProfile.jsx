@@ -237,107 +237,85 @@ export const EditProfile = ({ t }) => {
                     <h1 className="text-3xl font-bold mb-6">{t("profile.edit_profile")}</h1>
                     {success && <p className="text-green-500">{success}</p>}
                     <form onSubmit={handleSubmit} className="space-y-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <label className="block text-sm font-medium leading-5  text-gray-700  col-span-2 md:col-span-1">
-                                <span className="text-gray-700 font-bold">{t("first_name")}</span>
-                                <input
-                                    type="text"
-                                    name="first_name"
-                                    value={profile.first_name || ""}
-                                    onChange={handleChange}
-                                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                                    required
-                                    disabled={!isDoctor}
-                                />
-                            </label>
-                            <label className="block text-sm font-medium leading-5  text-gray-700  col-span-2 md:col-span-1">
-                                <span className="text-gray-700 font-bold">{t("last_name")}</span>
-                                <input
-                                    type="text"
-                                    name="last_name"
-                                    value={profile.last_name || ""}
-                                    onChange={handleChange}
-                                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                                    required
-                                    disabled={!isDoctor}
-                                />
-                            </label>
-                            <label className="block text-sm font-medium leading-5  text-gray-700  col-span-2 md:col-span-1">
-                                <span className="text-gray-700 font-bold">{t("username")}</span>
+                        <div className="space-y-4">
+                            <label className="block">
+                                <span className="text-gray-700">{t("username")}</span>
                                 <input
                                     type="text"
                                     name="username"
                                     value={profile.username || ""}
                                     onChange={handleChange}
-                                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                    className="block w-full border-0 rounded-lg p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm/6 outline-none"
                                     required
                                     disabled={!isDoctor}
                                 />
                             </label>
-
-                            <label className="block text-sm font-medium leading-5  text-gray-700  col-span-2 md:col-span-1">
-                                <span className="text-gray-700 font-bold">{t("email")}</span>
+                            <label className="block">
+                                <span className="text-gray-700">{t("first_name")}</span>
+                                <input
+                                    type="text"
+                                    name="first_name"
+                                    value={profile.first_name || ""}
+                                    onChange={handleChange}
+                                    className="block w-full border-0 rounded-lg p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm/6 outline-none"
+                                    required
+                                    disabled={!isDoctor}
+                                />
+                            </label>
+                            <label className="block">
+                                <span className="text-gray-700">{t("last_name")}</span>
+                                <input
+                                    type="text"
+                                    name="last_name"
+                                    value={profile.last_name || ""}
+                                    onChange={handleChange}
+                                    className="block w-full border-0 rounded-lg p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm/6 outline-none"
+                                    required
+                                    disabled={!isDoctor}
+                                />
+                            </label>
+                            <label className="block">
+                                <span className="text-gray-700">{t("email")}</span>
                                 <input
                                     type="email"
                                     name="email"
                                     value={profile.email || ""}
                                     onChange={handleChange}
-                                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                    className="block w-full border-0 rounded-lg p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm/6 outline-none"
                                     required
                                     disabled={!isDoctor}
                                 />
                             </label>
-                            <label className="block text-sm font-medium leading-5  text-gray-700  col-span-2 md:col-span-1">
-                                <span className="text-gray-700 font-bold">{t("phone_number")}</span>
+                            <label className="block">
+                                <span className="text-gray-700">{t("phone_number")}</span>
                                 <input
                                     type="tel"
                                     name="phone_number"
                                     value={profile.phone_number || ""}
                                     onChange={handleChange}
-                                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                    className="block w-full border-0 rounded-lg p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm/6 outline-none"
                                     disabled={!isDoctor}
                                 />
                             </label>
                             {isDoctor && (
                                 <>
-                                    <label className="block text-sm font-medium leading-5  text-gray-700  col-span-2 md:col-span-1">
-                                        <span className="text-gray-700 font-bold">{t("experience_start_date")}</span>
+                                    <label className="block">
+                                        <span className="text-gray-700">{t("experience_start_date")}</span>
                                         <input
                                             type="date"
                                             name="experience_start_date"
                                             value={profile.experience_start_date || ""}
                                             onChange={handleChange}
-                                            className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                            className="block w-full border-0 rounded-lg p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm/6 outline-none"
                                         />
                                     </label>
-                                    <label className="block text-sm font-medium leading-5  text-gray-700  col-span-2 md:col-span-1">
-                                        <span className="text-gray-700 font-bold">{t("street")}</span>
-                                        <input
-                                            type="text"
-                                            name="street"
-                                            value={profile.street || ""}
-                                            onChange={handleChange}
-                                            className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                                        />
-                                    </label>
-                                    <label className="block text-sm font-medium leading-5  text-gray-700  col-span-2 md:col-span-1">
-                                        <span className="text-gray-700 font-bold">{t("city")}</span>
-                                        <input
-                                            type="text"
-                                            name="city"
-                                            value={profile.city || ""}
-                                            onChange={handleChange}
-                                            className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                                        />
-                                    </label>
-
-                                    <label className="block text-sm font-medium leading-5  text-gray-700  col-span-2 md:col-span-1">
-                                        <span className="text-gray-700 font-bold">{t("state")}</span>
+                                    <label className="block">
+                                        <span className="text-gray-700">{t("state")}</span>
                                         <select
                                             name="state"
                                             value={profile.state || ""}
                                             onChange={handleChange}
-                                            className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                            className="block w-full border-0 rounded-lg p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm/6 outline-none"
                                             required
                                         >
                                             <option value="">{t("select_state")}</option>
@@ -348,13 +326,64 @@ export const EditProfile = ({ t }) => {
                                             ))}
                                         </select>
                                     </label>
-                                    <label className="block text-sm font-medium leading-5  text-gray-700  col-span-2 md:col-span-1">
-                                        <span className="text-gray-700 font-bold">{t("specialization_id")}</span>
+                                    <label className="block">
+                                        <span className="text-gray-700">{t("city")}</span>
+                                        <input
+                                            type="text"
+                                            name="city"
+                                            value={profile.city || ""}
+                                            onChange={handleChange}
+                                            className="block w-full border-0 rounded-lg p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm/6 outline-none"
+                                        />
+                                    </label>
+                                    <label className="block">
+                                        <span className="text-gray-700">{t("street")}</span>
+                                        <input
+                                            type="text"
+                                            name="street"
+                                            value={profile.street || ""}
+                                            onChange={handleChange}
+                                            className="block w-full border-0 rounded-lg p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm/6 outline-none"
+                                        />
+                                    </label>
+                                    <label className="block">
+                                        <span className="text-gray-700">{t("spoken_languages")}</span>
+                                        <Select
+                                            isMulti
+                                            options={languageOptions}
+                                            value={languages}
+                                            onChange={handleLanguageChange}
+                                            className="block w-full border-0 rounded-lg p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm/6 outline-none"
+                                            placeholder={t("select_languages")}
+                                        />
+                                    </label>
+                                    <label className="block">
+                                        <span className="text-gray-700">{t("zoom_link")}</span>
+                                        <input
+                                            type="url"
+                                            name="zoom_link"
+                                            value={profile.zoom_link || ""}
+                                            onChange={handleChange}
+                                            className="block w-full border-0 rounded-lg p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm/6 outline-none"
+                                        />
+                                    </label>
+                                    <label className="block">
+                                        <span className="text-gray-700">{t("visit_price")}</span>
+                                        <input
+                                            type="number"
+                                            name="visit_price"
+                                            value={profile.visit_price}
+                                            onChange={handleChange}
+                                            className="block w-full border-0 rounded-lg p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm/6 outline-none"
+                                        />
+                                    </label>
+                                    <label className="block">
+                                        <span className="text-gray-700">{t("specialization_id")}</span>
                                         <select
                                             name="specialization_id"
                                             value={profile.specialization_id}
                                             onChange={handleChange}
-                                            className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                            className="block w-full border-0 rounded-lg p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm/6 outline-none"
                                             required
                                         >
                                             {specializations.map((specialization) => (
@@ -364,20 +393,8 @@ export const EditProfile = ({ t }) => {
                                             ))}
                                         </select>
                                     </label>
-
-                                    <label className="block text-sm font-medium leading-5  text-gray-700  col-span-2 md:col-span-1">
-                                        <span className="text-gray-700 font-bold">{t("spoken_languages")}</span>
-                                        <Select
-                                            isMulti
-                                            options={languageOptions}
-                                            value={languages}
-                                            onChange={handleLanguageChange}
-                                            className="border-none p-0 appearance-none block w-full border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                                            placeholder={t("select_languages")}
-                                        />
-                                    </label>
-                                    <label className="block text-sm font-medium leading-5  text-gray-700  col-span-2 md:col-span-1">
-                                        <span className="text-gray-700 font-bold">{t("assurances")}</span>
+                                    <label className="block">
+                                        <span className="text-gray-700">{t("assurances")}</span>
                                         <Select
                                             isMulti
                                             options={assurances.map((assurance) => ({
@@ -389,65 +406,42 @@ export const EditProfile = ({ t }) => {
                                                 return matchingAssurance ? { value: matchingAssurance.id, label: matchingAssurance.name } : null;
                                             }).filter(Boolean)} // Filter out nulls
                                             onChange={handleAssuranceChange}
-                                            className="border-none p-0 block relative z-[9999] w-full border-0 rounded-lg text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm/6 outline-none"
+                                            className="block relative z-[9999] w-full border-0 rounded-lg p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm/6 outline-none"
                                             placeholder={t("select_assurances")}
                                         />
                                     </label>
-
-                                    <label className="block text-sm font-medium leading-5  text-gray-700  col-span-2 md:col-span-1">
-                                        <span className="text-gray-700 font-bold">{t("zoom_link")}</span>
-                                        <input
-                                            type="url"
-                                            name="zoom_link"
-                                            value={profile.zoom_link || ""}
-                                            onChange={handleChange}
-                                            className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                                        />
-                                    </label>
-                                    <label className="block text-sm font-medium leading-5  text-gray-700  col-span-2 md:col-span-1">
-                                        <span className="text-gray-700 font-bold">{t("visit_price")}</span>
-                                        <input
-                                            type="number"
-                                            name="visit_price"
-                                            value={profile.visit_price}
-                                            onChange={handleChange}
-                                            className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                                        />
-                                    </label>
-                                    <label className="block text-sm font-medium leading-5  text-gray-700  col-span-2 md:col-span-1">
-                                        <span className="text-gray-700 font-bold">{t("latitude")}</span>
+                                    <label className="block">
+                                        <span className="text-gray-700">{t("latitude")}</span>
                                         <input
                                             type="number"
                                             name="latitude"
                                             value={profile.latitude}
                                             onChange={handleChange}
-                                            className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                            className="block w-full border-0 rounded-lg p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm/6 outline-none"
                                         />
                                     </label>
-                                    <label className="block text-sm font-medium leading-5  text-gray-700  col-span-2 md:col-span-1">
-                                        <span className="text-gray-700 font-bold">{t("longitude")}</span>
+                                    <label className="block">
+                                        <span className="text-gray-700">{t("longitude")}</span>
                                         <input
                                             type="number"
                                             name="longitude"
                                             value={profile.longitude}
                                             onChange={handleChange}
-                                            className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                            className="block w-full border-0 rounded-lg p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm/6 outline-none"
                                         />
                                     </label>
-                                    <div className="col-span-2">
-                                        <MapContainer
-                                            center={position}
-                                            zoom={13}
-                                            scrollWheelZoom={false}
-                                            className="w-full h-64 rounded-lg"
-                                        >
-                                            <TileLayer
-                                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                                                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                                            />
-                                            <LocationMarker />
-                                        </MapContainer>
-                                    </div>
+                                    <MapContainer
+                                        center={position}
+                                        zoom={13}
+                                        scrollWheelZoom={false}
+                                        className="w-full h-64 rounded-lg"
+                                    >
+                                        <TileLayer
+                                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                        />
+                                        <LocationMarker />
+                                    </MapContainer>
                                 </>
                             )}
                         </div>
