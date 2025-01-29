@@ -19,6 +19,8 @@ export const Doctors = ({ t }) => {
     const page = parseInt(searchParams.get('page')) || 1;
     setCurrentPage(page);
     setDoctors([]);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
   }, [searchParams]);
 
 

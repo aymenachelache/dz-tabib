@@ -16,33 +16,7 @@ import { SearchBar } from '../../components/search/SearchBar';
 export const HomePage = ({ t }) => {
     const [specialties, setSpecialties] = useState([]);
 
-    const [doctors, setDoctors] = useState([
-        {
-            _id: 1,
-            name: "Achelache Aymen",
-            specialty: "Cardiologue",
-            rating: 4,
-            location: "Ferdjioua, Mila, Algeria",
-            image: "https://via.placeholder.com/150",
-        },
-
-        {
-            _id: 1,
-            name: "Achelache Aymen",
-            specialty: "Homologue",
-            rating: 4,
-            location: "Ferdjioua, Mila, Algeria",
-            image: "https://via.placeholder.com/150",
-        },
-        {
-            _id: 1,
-            name: "Achelache Aymen",
-            specialty: "Homologue",
-            rating: 4,
-            location: "Ferdjioua, Mila, Algeria",
-            image: "https://via.placeholder.com/150",
-        }
-    ]);
+    const [doctors, setDoctors] = useState([]);
 
     useEffect(() => {
 
@@ -162,11 +136,11 @@ export const HomePage = ({ t }) => {
                             {t("HomePage.home.SeeMore")}
                         </Link>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                        {doctors.map((doctor, index) => (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 items-stretch gap-6">
+                        {doctors?.map((doctor, index) => (
                             <Link to={`doctor/${doctor.id}`} key={index}>
                                 <div
-                                    className="border rounded-lg p-4 shadow-md flex flex-col items-center"
+                                    className="border rounded-lg p-4 shadow-md flex flex-col items-center justify-between h-full"
                                 >
                                     <img
                                         src={doctor.photo || doctorImg}
