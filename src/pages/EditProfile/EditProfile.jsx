@@ -305,8 +305,9 @@ export const EditProfile = ({ t }) => {
                                         <input
                                             type="date"
                                             name="experience_start_date"
-                                            value={profile.experience_start_date || ""}
+                                            value={profile.experience_start_date || new Date().toISOString().split("T")[0]}
                                             onChange={handleChange}
+                                            max={new Date().toISOString().split("T")[0]} // Set today as max date
                                             className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                                         />
                                     </label>

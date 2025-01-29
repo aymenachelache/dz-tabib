@@ -29,6 +29,7 @@ export const MyProfile = ({ t }) => {
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
+    handleUpload();
   };
 
   const handleUpload = async () => {
@@ -144,7 +145,7 @@ export const MyProfile = ({ t }) => {
                 </div>
               </div>
               <div className="flex gap-5">
-                {!selectedFile ? <div className="bg-blue-500 text-white hover:bg-blue-600 font-semibold py-2 px-4 border border-blue-500 rounded shadow cursor-pointer"><input
+                 <div className="bg-blue-500 text-white hover:bg-blue-600 font-semibold py-2 px-4 border border-blue-500 rounded shadow cursor-pointer"><input
                   type="file"
                   accept="image/*"
                   onChange={handleFileChange}
@@ -153,12 +154,12 @@ export const MyProfile = ({ t }) => {
                 />
                   <label
                     htmlFor="file-upload"
-                    className=""
-                  > {t("Select Image")}</label>
+                    className="cursor-pointer"
+                  > {t("Upload Picture")}</label>
                 </div>
-                  : <button onClick={handleUpload} className="bg-blue-500 text-white hover:bg-blue-600 font-semibold py-2 px-4 border border-blue-500 rounded shadow">
+                {/* <button onClick={handleUpload} className="bg-blue-500 text-white hover:bg-blue-600 font-semibold py-2 px-4 border border-blue-500 rounded shadow">
                     {t("Upload Picture")}
-                  </button>}
+                  </button> */}
 
                 <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
                   <Link to={`/editprofile`}><p className="cursor-pointer hover:text-black">{t("Edit My Profile")}</p></Link>
