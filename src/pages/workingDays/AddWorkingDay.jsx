@@ -8,7 +8,7 @@ import { Footer } from "../../components/footer/Footer";
 
 export const AddWorkingDay = ({ t }) => {
   const [dayOfWeek, setDayOfWeek] = useState("");
-  const [dailyLimit, setDailyLimit] = useState(0);
+  const [dailyLimit, setDailyLimit] = useState(1);
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [loading, setLoading] = useState(false);
@@ -99,6 +99,7 @@ export const AddWorkingDay = ({ t }) => {
               onChange={(e) => setDailyLimit(Number(e.target.value))}
               className="w-full border rounded-md p-2 mt-2"
               required
+              min={1}
             />
           </div>
 
