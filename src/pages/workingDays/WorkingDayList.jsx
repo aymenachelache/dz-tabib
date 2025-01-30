@@ -77,7 +77,7 @@ export const WorkingDaysList = ({ t }) => {
   return (
     <>
       <Header t={t} />
-      <div className="container mx-auto p-8">
+      <div className="container mx-auto p-8 min-h-screen">
         <div className="my-3 flex flex-col justify-between items-center md:flex-row">
           <h1 className="text-4xl font-semibold mb-6 text-center text-gray-800">
             {t("working_days_list.title")}

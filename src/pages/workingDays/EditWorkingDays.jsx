@@ -89,7 +89,9 @@ export const EditWorkingDays = ({ t }) => {
 
     if (loading) {
         return (
-            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-opacity-75"></div>
+            <div className="flex justify-center items-center w-full h-screen">
+                <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-opacity-75"></div>
+            </div>
         );
     }
 
@@ -145,15 +147,15 @@ export const EditWorkingDays = ({ t }) => {
                                         <label className="block">
                                             <span className="text-gray-700">{t("start_time")}</span>
                                             <input
-    type="time"
-    value={
-        day.hours[0]?.start_time
-            ? day.hours[0].start_time.split(":").slice(0, 2).map((part) => part.padStart(2, "0")).join(":")
-            : "00:00"
-    }
-    onChange={(e) => handleWorkingDayChange(index, "start_time", e.target.value)}
-    className="block w-full border-0 rounded-lg p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm/6 outline-none"
-/>
+                                                type="time"
+                                                value={
+                                                    day.hours[0]?.start_time
+                                                        ? day.hours[0].start_time.split(":").slice(0, 2).map((part) => part.padStart(2, "0")).join(":")
+                                                        : "00:00"
+                                                }
+                                                onChange={(e) => handleWorkingDayChange(index, "start_time", e.target.value)}
+                                                className="block w-full border-0 rounded-lg p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm/6 outline-none"
+                                            />
 
                                         </label>
                                         {/* End Time */}

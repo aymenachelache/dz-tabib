@@ -81,6 +81,12 @@ const API_URL = import.meta.env?.VITE_API_URL || process.env.VITE_API_URL || 'ht
     // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
+        if (formData.password.length < 8) {
+            setErrors({ server: "Le mot de passe doit contenir au moins 8 caractères." });
+            return;
+        }
+
 
         if (!validateForm()) return;
 
