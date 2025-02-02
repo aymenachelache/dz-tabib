@@ -76,7 +76,11 @@ export const Comments = ({ idDoctor, t }) => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    if(rating == 0) {
+      setErrorMessage("Should be Rating before.");
+      return
+    }
+  
     const requestData = {
       id_doctor: idDoctor, // ID of the doctor being rated
       id_patient: userId,  // ID of the logged-in user
