@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 export const Rating = ({ idDoctor, t }) => {
   const [rating, setRating] = useState(0); // Current rating
   const [lastRating, setLastRating] = useState(null); // Last rating given by the patient
-  const [comment, setComment] = useState(null); // Last rating given by the patient
+  const [comment, setComment] = useState(""); // Last rating given by the patient
   const [userId, setUserId] = useState(null);
   const [hoverRating, setHoverRating] = useState(0); // Rating when hovering over stars
   const [successMessage, setSuccessMessage] = useState(null); // Success message state
@@ -64,7 +64,7 @@ export const Rating = ({ idDoctor, t }) => {
       id_doctor: idDoctor, // ID of the doctor being rated
       id_patient: userId,  // ID of the logged-in user
       note: newRating,     // The rating value
-      comment: comment,         // Optional comment field (empty for now)
+      // comment: comment,         // Optional comment field (empty for now)
     };
 
     try {
