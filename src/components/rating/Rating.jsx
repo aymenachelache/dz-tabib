@@ -64,7 +64,7 @@ export const Rating = ({ idDoctor, t }) => {
       id_doctor: idDoctor, // ID of the doctor being rated
       id_patient: userId,  // ID of the logged-in user
       note: newRating,     // The rating value
-      // comment: comment,         // Optional comment field (empty for now)
+      comment: comment,         // Optional comment field (empty for now)
     };
 
     try {
@@ -96,6 +96,7 @@ export const Rating = ({ idDoctor, t }) => {
     } catch (error) {
       console.error("Error updating rating:", error);
       console.log(error.response.data.detail);
+      console.log(error)
       setErrorMessage(error.response?.data?.detail)
     }
   };
